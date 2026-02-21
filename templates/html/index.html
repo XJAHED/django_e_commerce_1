@@ -1,11 +1,6 @@
-{% extends 'base.html' %}
-{% block main_content %}
+{% extends '../base.html' %}
 {% load static %}
-
-
-
-
-
+{% block main_content %}
 
 <section class="space-bottom-3">
 <div class="container-fluid px-3 px-md-5 px-xl-8d75">
@@ -14,14 +9,39 @@
 <div class="mb-lg-5 mb-xl-0">
 <div class="bg-img-hero img-fluid mb-5" style="background-image: url({% static 'assets/img/1076x761/img1.jpg' %});">
 <div class="js-slick-carousel u-slick" data-arrows-classes="d-none d-lg-block u-slick__arrow u-slick__arrow--v2 u-slick__arrow-centered--y" data-arrow-left-classes="flaticon-back u-slick__arrow-inner u-slick__arrow-inner--left ml-lg-0" data-arrow-right-classes="flaticon-next u-slick__arrow-inner u-slick__arrow-inner--right mr-lg-0">
-<div class>
+<div>
+
+<div class="row mx-2 mx-md-4 mx-lg-7 align-items-center min-height-600">
+  <h1>Total Banners: {{ banners|length }}</h1>
+{% for banner in banners %}
+
+<div class="col-md-7 col-wd-6">
+<div class="media d-block d-lg-flex">
+<div class="media-body align-self-center mb-4 mb-lg-0">
+<p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold mb-2" data-scs-animation-in="fadeInUp" data-scs-animation-delay="200">AVAILABLE ONCE A YEAR</p>
+<h2 class="font-size-10 mb-3 pb-1" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
+<span class="hero__title-line-1 font-weight-bold d-block">{{ banner.title }}</span>
+<span class="hero__title-line-2 font-weight-normal d-block">{{ banner.description|safe }}</span>
+</h2>
+<a href="../shop/v6.html" class="banner_btn btn btn-wide bg-dark rounded-0 text-white" data-scs-animation-in="fadeInLeft" data-scs-animation-delay="400">Explore Now</a>
+</div>
+</div>
+</div>
+{% endfor %}
+<div class="col-md-5 col-wd-6" data-scs-animation-in="fadeInRight" data-scs-animation-delay="400">
+<img src="https://placehold.it/500x423" class="img-fluid" alt="image-description">
+</div>
+</div>
+</div>
+
+<!-- <div>
 <div class="row mx-2 mx-md-4 mx-lg-7 align-items-center min-height-600">
 <div class="col-md-7 col-wd-6">
 <div class="media d-block d-lg-flex">
 <div class="media-body align-self-center mb-4 mb-lg-0">
 <p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold mb-2" data-scs-animation-in="fadeInUp" data-scs-animation-delay="200">AVAILABLE ONCE A YEAR</p>
 <h2 class="font-size-10 mb-3 pb-1" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
-<span class="hero__title-line-1 font-weight-bold d-block">Get 40% off on </span>
+<span class="hero__title-line-1 font-weight-bold d-block">Get 40% off on page 2</span>
 <span class="hero__title-line-2 font-weight-normal d-block">orders over $149</span>
 </h2>
 <a href="../shop/v6.html" class="banner_btn btn btn-wide bg-dark rounded-0 text-white" data-scs-animation-in="fadeInLeft" data-scs-animation-delay="400">Explore Now</a>
@@ -33,14 +53,14 @@
 </div>
 </div>
 </div>
-<div class>
+<div>
 <div class="row mx-2 mx-md-4 mx-lg-7 align-items-center min-height-600">
 <div class="col-md-7 col-wd-6">
 <div class="media d-block d-lg-flex">
 <div class="media-body align-self-center mb-4 mb-lg-0">
 <p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold mb-2" data-scs-animation-in="fadeInUp" data-scs-animation-delay="200">AVAILABLE ONCE A YEAR</p>
 <h2 class="font-size-10 mb-3 pb-1" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
-<span class="hero__title-line-1 font-weight-bold d-block">Get 40% off on </span>
+<span class="hero__title-line-1 font-weight-bold d-block">Get 40% off on page 3</span>
 <span class="hero__title-line-2 font-weight-normal d-block">orders over $149</span>
 </h2>
 <a href="../shop/v6.html" class="banner_btn btn btn-wide bg-dark rounded-0 text-white" data-scs-animation-in="fadeInLeft" data-scs-animation-delay="400">Explore Now</a>
@@ -51,26 +71,7 @@
 <img src="https://placehold.it/500x423" class="img-fluid" alt="image-description">
 </div>
 </div>
-</div>
-<div class>
-<div class="row mx-2 mx-md-4 mx-lg-7 align-items-center min-height-600">
-<div class="col-md-7 col-wd-6">
-<div class="media d-block d-lg-flex">
-<div class="media-body align-self-center mb-4 mb-lg-0">
-<p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold mb-2" data-scs-animation-in="fadeInUp" data-scs-animation-delay="200">AVAILABLE ONCE A YEAR</p>
-<h2 class="font-size-10 mb-3 pb-1" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
-<span class="hero__title-line-1 font-weight-bold d-block">Get 40% off on </span>
-<span class="hero__title-line-2 font-weight-normal d-block">orders over $149</span>
-</h2>
-<a href="../shop/v6.html" class="banner_btn btn btn-wide bg-dark rounded-0 text-white" data-scs-animation-in="fadeInLeft" data-scs-animation-delay="400">Explore Now</a>
-</div>
-</div>
-</div>
-<div class="col-md-5 col-wd-6" data-scs-animation-in="fadeInRight" data-scs-animation-delay="400">
-<img src="https://placehold.it/500x423" class="img-fluid" alt="image-description">
-</div>
-</div>
-</div>
+</div> -->
 </div>
 </div>
 <div class="row row-cols-1 row-cols-md-2 mb-5 mb-lg-0">
