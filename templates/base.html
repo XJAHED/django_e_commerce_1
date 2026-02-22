@@ -40,6 +40,7 @@
 <script src="{% static 'assets/js/components/hs.show-animation.js' %}"></script>
 <script src="{% static 'assets/vendor/slick-carousel/slick/slick.min.js' %}"></script>
 
+
 <script>
          $(document).on('ready', function () {
              // initialization of unfold component
@@ -87,6 +88,22 @@
                  }
              });
          });
+</script>
+<script>
+    $(document).ready(function(){
+        // Initialize HSCore slider
+        $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel', {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true,
+            dots: true,
+            infinite: true,      // loop continuously
+            autoplay: true,
+            autoplaySpeed: 3000,
+            fade: false,
+            rtl: false           // normal left-to-right
+        });
+    });
 </script>
 </body>
 </html>
