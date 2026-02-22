@@ -3,5 +3,5 @@ from .views import *
 # from banner.views import Banner
 
 urlpatterns = [
-    path('', banner_show, name='banner_section')
+    # path('', banner_show, name='banner_section')
 ]

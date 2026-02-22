@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'django_cleanup.apps.CleanupConfig',
     'banner',
+    'Books',
 ]
 
 MIDDLEWARE = [
