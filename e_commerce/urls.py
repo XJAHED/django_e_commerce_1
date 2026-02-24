@@ -17,15 +17,18 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+
 from .views import home_page
 from django.conf import settings
 from django.conf.urls.static import static
+# from e_commerce import Dashboard
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('super-admin/', admin.site.urls),
     path('',home_page, name='home_page'),
-    # path('',include('banner.urls'))
+    # path('',include('banner.urls')),
+    path('', include("Dashboard.urls"))
 ]
 
 if settings.DEBUG:
