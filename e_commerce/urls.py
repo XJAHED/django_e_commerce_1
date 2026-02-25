@@ -18,7 +18,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import home_page
+from .views import home_page, admin_page
 from django.conf import settings
 from django.conf.urls.static import static
 # from e_commerce import Dashboard
@@ -27,8 +27,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('super-admin/', admin.site.urls),
     path('',home_page, name='home_page'),
-    # path('',include('banner.urls')),
-    path('', include("Dashboard.urls"))
+    path('dashboard/',admin_page, name='admin_page'),
+    path('dashboard/', include(('Dashboard.urls', 'dashboard'), namespace='dashboard')),
 ]
 
 if settings.DEBUG:

@@ -9,3 +9,4 @@ from .models import Banner
 #     context["banners"] = banners_obj
 #     print(context)
 #     return render(request, 'html/index.html', context)
+

@@ -9,3 +9,11 @@ def home_page(request):
     banners = Banner.objects.all()
     context['banners'] = banners
     return render(request, 'html/index.html', context)
+
+
+def admin_page(request):
+    context ={}
+    banners = Banner.objects.all()
+    context['banners'] = banners
+    return render(request, 'html/dashboard/admin.html', context)
+

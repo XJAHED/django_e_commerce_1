@@ -14,10 +14,10 @@ def image_upload_path(instance, filename):
 
 @cleanup.select
 class Banner(models.Model):
-    description = RichTextField()
+    description = RichTextField(max_length=250)
     title = models.CharField(max_length=50, null=True, blank=True)
     image = ResizedImageField(size=[500,300], quality=75,upload_to=image_upload_path, null=True, blank=True)
-    
+    is_active = models.BooleanField(default=True)
     def __str__(self):
         return self.title
 
