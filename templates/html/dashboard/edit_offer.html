@@ -1,0 +1,42 @@
+{% include 'html/components/dashboard_nav.html' %}
+
+<div class="content">
+
+    <div class="intro-y d-flex flex-column flex-sm-row align-items-center pt-8 pb-8">
+    <h2 class="fs-lg fw-medium me-auto">Edit Post</h2>
+    </div>
+    
+    <!-- BEGIN: Post Content -->
+    <form action="{% url 'dashboard:edit_offer_banner' edit_offer.id %}" method="POST">
+        {% csrf_token %}
+        <div class="intro-y g-col-12 g-col-lg-8">
+            <div class="fw-medium d-flex align-items-center border-bottom border-gray-200 dark-border-dark-5 pb-5"> Title </div>
+            <input name="title" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" value="{{ edit_offer.title }}">
+            <div class="post intro-y overflow-hidden box mt-5">
+
+                <div class="post__content tab-content">
+                    <div class="tab-pane p-5 fade show active" id="content" role="tabpanel" aria-labelledby="content-tab">
+                        <div class="border border-gray-200 dark-border-dark-5 rounded-2 p-5">
+                            <div class="fw-medium d-flex align-items-center border-bottom border-gray-200 dark-border-dark-5 pb-5"> Text Content </div>
+                            <div class="mt-5">
+                                    <textarea name="description" class="editor">
+                                        {{ edit_offer.description|safe }}
+                                    </textarea>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+           
+            <div class="w-full w-sm-auto d-flex pt-6 mt-sm-0 d-flex">
+                <a href="{% url 'dashboard:CustomAdmin' %}"><button type="button" class="btn box text-gray-700 dark-text-gray-300 me-2 d-flex ms-auto ms-sm-0"> Cencel </button></a>
+                <button type="submit" class="dropdown-toggle btn btn-primary shadow-md d-flex" aria-expanded="false"> Save </button>
+            </div>
+        <!-- END: Post Content -->
+        </div>
+    </form>
+    
+    </div>
+
+{% include 'html/components/dashboard_footer.html' %}

@@ -5,137 +5,58 @@
 <section class="space-bottom-3">
 <div class="container-fluid px-3 px-md-5 px-xl-8d75">
 <div class="row">
-  <div class="col-xl-4">
-    <div class="row row-cols-lg-2 row-cols-xl-1">
-    <div class="col">
-    <div class="bg-gray-200 p-5 mb-5 min-height-450">
-    <div class="mb-2">
-    <span class="font-weight-medium h6 text-gray-400">BEST SELLER</span>
-    </div>
-    <h6 class="font-weight-bold font-size-7">Books</h6>
-    <a href="../shop/v6.html" class="stretched-link link-black-100 text-dark font-weight-medium">
-    <span class="product__add-to-cart d-inline-block">Shop Now</span>
-    </a>
-    <div class="d-flex justify-content-end mt-4">
-    <img src="https://placehold.it/230x250" class="img-fluid attachment-shop_catalog size-shop_catalog wp-post-image" alt="image-description">
-    </div>
-    </div>
-    </div>
-    <div class="col">
-    <div class="bg-gray-200 p-5 min-height-450">
-    <div class="mb-2">
-    <span class="font-weight-medium h6 text-gray-400">DEAL OF THE WEEK</span>
-    </div>
-    <h6 class="font-weight-bold font-size-7">Made For You</h6>
-    <a href="../shop/v6.html" class="stretched-link link-black-100 text-dark font-weight-medium">
-    <span class="product__add-to-cart d-inline-block">Shop Book</span>
-    </a>
-    <div class="d-flex justify-content-end my-3">
-    <img src="https://placehold.it/230x200" class="img-fluid attachment-shop_catalog size-shop_catalog wp-post-image" alt="image-description">
-    </div>
-    <div class="d-flex align-items-stretch justify-content-between">
-    <div class="py-2d75 text-primary-home-v3">
-    <span class="font-weight-medium font-size-3">114</span>
-    <span class="font-size-2">Days</span>
-    </div>
-    <div class="py-2d75 text-primary-home-v3">
-    <span class="font-weight-medium font-size-3">03</span>
-    <span class="font-size-2">Hours</span>
-    </div>
-    <div class="py-2d75 text-primary-home-v3">
-    <span class="font-weight-medium font-size-3">60</span>
-    <span class="font-size-2">Mins</span>
-    </div>
-    <div class="py-2d75 text-primary-home-v3">
-    <span class="font-weight-medium font-size-3">25</span>
-    <span class="font-size-2">Secs</span>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-<div class="col-xl-8">
+
+<div class="col-xl-12">
 <div class="mb-lg-5 mb-xl-0">
 <div class="bg-img-hero img-fluid mb-5" style="background-image: url({% static 'assets/img/1076x761/img1.jpg' %});">
 <div class="js-slick-carousel u-slick" data-arrows-classes="d-none d-lg-block u-slick__arrow u-slick__arrow--v2 u-slick__arrow-centered--y" data-arrow-left-classes="flaticon-back u-slick__arrow-inner u-slick__arrow-inner--left ml-lg-0" data-arrow-right-classes="flaticon-next u-slick__arrow-inner u-slick__arrow-inner--right mr-lg-0">
 {% for banner in banners %}
+
+{% if banner.is_active %}
 <div>
-<div class="row mx-2 mx-md-4 mx-lg-7 align-items-center min-height-600">
+  <div class="row mx-2 mx-md-4 mx-lg-7 align-items-center min-height-600">
+  
+  <div class="col-md-7 col-wd-6">
+  <div class="media d-block d-lg-flex">
+  <div class="media-body align-self-center mb-4 mb-lg-0 text-center">
+  <p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold mb-2" data-scs-animation-in="fadeInUp" data-scs-animation-delay="200">{{ banner.title }}</p>
+  <h2 class="font-size-10 mb-3 pb-1" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
+  <!-- <span class=" font-weight-bold d-block">{{ banner.title }}</span> -->
+  <span class="hero__title-line-1 font-weight-normal d-block">{{ banner.description|safe }}</span>
+  </h2>
+  <a href="../shop/v6.html" class="banner_btn btn btn-wide bg-dark rounded-0 text-white" data-scs-animation-in="fadeInLeft" data-scs-animation-delay="400">Explore Now</a>
+  </div>
+  </div>
+  </div>
+  
+  <div class="col-md-5 col-wd-6v" style="padding-left: 50px;" data-scs-animation-in="fadeInRight" data-scs-animation-delay="400">
+  <img src="{{ banner.image.url }}" class="img-fluid" alt="image-description">
+  </div>
+  </div>
+  </div>
+{% endif %}
 
-<div class="col-md-7 col-wd-6">
-<div class="media d-block d-lg-flex">
-<div class="media-body align-self-center mb-4 mb-lg-0">
-<!-- <p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold mb-2" data-scs-animation-in="fadeInUp" data-scs-animation-delay="200">{{ banner.image.url }}</p> -->
-<h2 class="font-size-10 mb-3 pb-1" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
-<span class="hero__title-line-1 font-weight-bold d-block">{{ banner.title }}</span>
-<span class="hero__title-line-2 font-weight-normal d-block">{{ banner.description|safe }}</span>
-</h2>
-<a href="../shop/v6.html" class="banner_btn btn btn-wide bg-dark rounded-0 text-white" data-scs-animation-in="fadeInLeft" data-scs-animation-delay="400">Explore Now</a>
-</div>
-</div>
-</div>
-
-<div class="col-md-5 col-wd-6" data-scs-animation-in="fadeInRight" data-scs-animation-delay="400">
-<img src="{{ banner.image.url }}" class="img-fluid" alt="image-description">
-</div>
-</div>
-</div>
 {% endfor %}
-<!-- <div>
-<div class="row mx-2 mx-md-4 mx-lg-7 align-items-center min-height-600">
-<div class="col-md-7 col-wd-6">
-<div class="media d-block d-lg-flex">
-<div class="media-body align-self-center mb-4 mb-lg-0">
-<p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold mb-2" data-scs-animation-in="fadeInUp" data-scs-animation-delay="200">AVAILABLE ONCE A YEAR</p>
-<h2 class="font-size-10 mb-3 pb-1" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
-<span class="hero__title-line-1 font-weight-bold d-block">Get 40% off on page 2</span>
-<span class="hero__title-line-2 font-weight-normal d-block">orders over $149</span>
-</h2>
-<a href="../shop/v6.html" class="banner_btn btn btn-wide bg-dark rounded-0 text-white" data-scs-animation-in="fadeInLeft" data-scs-animation-delay="400">Explore Now</a>
-</div>
-</div>
-</div>
-<div class="col-md-5 col-wd-6" data-scs-animation-in="fadeInRight" data-scs-animation-delay="400">
-<img src="https://placehold.it/500x423" class="img-fluid" alt="image-description">
-</div>
-</div>
-</div>
-<div>
-<div class="row mx-2 mx-md-4 mx-lg-7 align-items-center min-height-600">
-<div class="col-md-7 col-wd-6">
-<div class="media d-block d-lg-flex">
-<div class="media-body align-self-center mb-4 mb-lg-0">
-<p class="banner__pretitle text-uppercase text-gray-400 font-weight-bold mb-2" data-scs-animation-in="fadeInUp" data-scs-animation-delay="200">AVAILABLE ONCE A YEAR</p>
-<h2 class="font-size-10 mb-3 pb-1" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
-<span class="hero__title-line-1 font-weight-bold d-block">Get 40% off on page 3</span>
-<span class="hero__title-line-2 font-weight-normal d-block">orders over $149</span>
-</h2>
-<a href="../shop/v6.html" class="banner_btn btn btn-wide bg-dark rounded-0 text-white" data-scs-animation-in="fadeInLeft" data-scs-animation-delay="400">Explore Now</a>
-</div>
-</div>
-</div>
-<div class="col-md-5 col-wd-6" data-scs-animation-in="fadeInRight" data-scs-animation-delay="400">
-<img src="https://placehold.it/500x423" class="img-fluid" alt="image-description">
-</div>
-</div>
-</div> -->
+
 </div>
 </div>
 <div class="row row-cols-1 row-cols-md-2 mb-5 mb-lg-0">
 <div class="col">
 <div class="bg-primary p-3d25 mb-5 mb-md-0 min-height-300 d-flex position-relative">
 <div class="border__1 d-flex align-items-center justify-content-center w-100">
+{% for on_offer in on_offers %}
 <div class="text-center px-2 py-8 px-md-0 py-md-0">
-<h6 class="font-weight-bold text-white mb-3">GET FREE NEXTDAY DELIVERY</h6>
-<div class="text-lh-sm mb-3">
-<div class="font-size-7 text-white font-weight-bold">On orders of $35 </div>
-<span class="font-size-7 text-white font-weight-bold">or more.</span>
-</div>
-<div class="mb-4 mb-md-0">
-<a href="../shop/v6.html" class="stretched-link text-white h-border-bottom-white h6 font-weight-medium" tabindex="0">Start Shopping</a>
-</div>
-</div>
+  <h6 class="font-weight-bold text-white mb-3">{{ on_offer.title }}</h6>
+  <div class="text-lh-sm mb-3">
+  <div class="font-size-7 text-white font-weight-bold">{{ on_offer.description|striptags }}</div>
+  <span class="font-size-7 text-white font-weight-bold">or more.</span>
+  </div>
+  <div class="mb-4 mb-md-0">
+  <a href="../shop/v6.html" class="stretched-link text-white h-border-bottom-white h6 font-weight-medium" tabindex="0">Start Shopping</a>
+  </div>
+  </div>
+{% endfor %}
+
 <div class="position-absolute bottom-0 left-0 ml-6 mb-1">
 <i class="flaticon-delivery font-size-17 text-red-1"></i>
 </div>
@@ -145,13 +66,16 @@
 <div class="col">
 <div class="bg-gray-780 p-3d25 mb-5 mb-md-0 min-height-300 d-flex position-relative">
 <div class="border__1 d-flex align-items-center justify-content-center w-100">
-<div class="text-center">
-<h6 class="font-weight-bold text-white mb-0">SUMMER SALE </h6>
-<span class="font-weight-bold font-size-12 text-gray-260">50%</span>
-<div class>
-<a href="../shop/v6.html" class="stretched-link text-white h-border-bottom-white h6 font-weight-medium" tabindex="0">Shop now</a>
-</div>
-</div>
+  {% for sale_offer in sale_offers %}
+  <div class="text-center">
+    <h6 class="font-weight-bold text-white mb-0">{{ sale_offer.title }}</h6>
+    <span class="font-weight-bold font-size-12 text-gray-260">{{ sale_offer.discount }}%</span>
+    <div class>
+    <a href="../shop/v6.html" class="stretched-link text-white h-border-bottom-white h6 font-weight-medium" tabindex="0">Shop now</a>
+    </div>
+    </div>
+  {% endfor %}
+
 </div>
 </div>
 </div>

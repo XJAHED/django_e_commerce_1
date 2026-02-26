@@ -25,9 +25,10 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('super-admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('',home_page, name='home_page'),
     path('dashboard/',admin_page, name='admin_page'),
+    # path('banner_section/',banner_section, name='banner_section'),
     path('dashboard/', include(('Dashboard.urls', 'dashboard'), namespace='dashboard')),
 ]
 

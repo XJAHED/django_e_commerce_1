@@ -22,3 +22,14 @@ class Banner(models.Model):
         return self.title
 
 
+class on_offer(models.Model):
+    title = models.CharField(max_length=250, null=True, blank= True)
+    description = RichTextField(max_length=250, null=True, blank=True)
+    def __str__(self):
+        return self.title
+    
+class sale_offer(models.Model):
+    title=models.CharField(max_length=250, null=True, blank=True)
+    discount = models.IntegerField(default=0)
+    def __str__(self):
+        return self.title

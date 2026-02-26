@@ -5,6 +5,7 @@
 
 <div class="intro-y d-flex flex-column flex-sm-row align-items-center pt-8 pb-8">
 <h2 class="fs-lg fw-medium me-auto">Edit Post</h2>
+
 </div>
 
 <!-- BEGIN: Post Content -->
@@ -44,7 +45,7 @@
                                     </div>
                                     <div class="px-4 pb-4 d-flex align-items-center cursor-pointer position-relative dark-text-gray-500">
                                         <i data-feather="image" class="w-4 h-4 me-2"></i> <span class="text-theme-1 dark-text-theme-10 me-1">Upload a file</span> or drag and drop 
-                                        <input onchange="previewImage(event)" name="image" type="file" class="w-full h-full top-0 start-0 position-absolute opacity-0">
+                                        <input multiple onchange="previewImage(event)" name="image" type="file" class="w-full h-full top-0 start-0 position-absolute opacity-0">
                                     </div>
                                 </div>
                             </div>
@@ -61,6 +62,7 @@
     <!-- END: Post Content -->
     </div>
 </form>
+
 
 </div>
 

@@ -1,0 +1,111 @@
+{% load static %}
+{% include 'html/components/dashboard_nav.html' %}
+
+<style>
+    
+    
+    /* Main Content */
+    .main-content {
+        
+        padding: 20px;
+    }
+
+    .header {
+        background-color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        font-size: 20px;
+        color: #1c3faa;
+    }
+
+    .cards {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        background-color: white;
+        flex: 1 1 200px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .card h3 {
+        margin-bottom: 10px;
+        color: #1c3faa;
+        font-size: 24px;
+    }
+
+    .card p {
+        font-size: 24px;
+        color: #1c3faa;
+    }
+
+    /* Table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    th {
+        background-color: #1f2937;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #f3f4f6;
+    }
+
+  
+</style>
+
+<body>
+<!-- Sidebar -->
+
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="header">
+        <h1>Welcome, {{ user.username }}!</h1>
+        <p>Here's what's happening today.</p>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+        <div class="card">
+            <h3>Total Users</h3>
+            <p>{{ users|length }}</p>
+        </div>
+        <div class="card">
+            <h3>Orders Today</h3>
+            <p>75</p>
+        </div>
+        <div class="card">
+            <h3>Revenue</h3>
+            <p>$12,340</p>
+        </div>
+        <div class="card">
+            <h3>Pending Tasks</h3>
+            <p>8</p>
+        </div>
+    </div>
+
+  
+</div>
+
+{% include 'html/components/dashboard_footer.html' %}
