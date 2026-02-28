@@ -2,79 +2,58 @@
 {% include 'html/components/dashboard_nav.html' %}
 
             <div class="content">
+                <h2 class="fs-lg fw-medium me-auto">
+                    Add New Book
+                </h2>
                 <!-- BEGIN: Top Bar -->
                 
                 <!-- END: Top Bar -->
-                <div class="intro-y d-flex flex-column flex-sm-row align-items-center mt-8">
-                    <h2 class="fs-lg fw-medium me-auto">
-                        Add New Post
-                    </h2>
-                    <div class="w-full w-sm-auto d-flex mt-4 mt-sm-0">
-                        
-                        <button type="button" class="btn box text-gray-700 dark-text-gray-300 me-2 d-flex align-items-center ms-auto ms-sm-0"> Cencel </button>
-                     
-                            <button class="dropdown-toggle btn btn-primary shadow-md d-flex align-items-center" aria-expanded="false"> Save </button>
-                            
-                       
-                    </div>
-                </div>
-                <div class="pos intro-y grid columns-12 gap-5 mt-5">
-                    <!-- BEGIN: Post Content -->
-                    <div class="intro-y g-col-12 g-col-lg-8">
-                        <input type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Title">
-                        <div class="post intro-y overflow-hidden box mt-5">
-                            <ul class="post__tabs nav nav-tabs flex-column flex-sm-row bg-gray-300 dark-bg-dark-2 text-gray-600" role="tablist">
-                                <li id="content-tab" class="nav-item" role="presentation">
-                                    <button class="tooltip nav-link d-flex justify-content-center align-items-center w-full w-sm-40 py-4 active" title="Fill in the article content" data-bs-toggle="pill" data-bs-target="#content" type="button" role="tab" aria-controls="content-tab" aria-selected="true"> <i data-feather="file-text" class="w-4 h-4 me-2"></i> Content </button>
-                                </li>
-                                <li id="meta-title-tab" class="nav-item" role="presentation">
-                                    <button class="tooltip nav-link d-flex justify-content-center align-items-center w-full w-sm-40 py-4" title="Adjust the meta title" data-bs-toggle="pill" data-bs-target="#meta-title" type="button" role="tab" aria-controls="meta-title-tab" aria-selected="false"> <i data-feather="code" class="w-4 h-4 me-2"></i> Meta Title </button>
-                                </li>
-                                <li id="keywords-tab" class="nav-item" role="presentation">
-                                    <button class="tooltip nav-link d-flex justify-content-center align-items-center w-full w-sm-40 py-4" title="Use search keywords" data-bs-toggle="pill" data-bs-target="#keywords" type="button" role="tab" aria-controls="keywords-tab" aria-selected="false"> <i data-feather="align-left" class="w-4 h-4 me-2"></i> Keywords </button>
-                                </li>
-                            </ul>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="pos intro-y grid columns-12 gap-5 mt-5">
+                    
+                        <!-- BEGIN: Post Content -->
+                        <div class="intro-y g-col-12 g-col-lg-8">
+                            <div class="mt-3">
+                                <label for="post-form-7" class="form-label">Book Name</label>
+                                <input name="name" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Name">
+                            </div>
+
+                            <div class="post intro-y overflow-hidden box mt-5">
+
                             <div class="post__content tab-content">
                                 <div class="tab-pane p-5 fade show active" id="content" role="tabpanel" aria-labelledby="content-tab">
-                                    <div class="border border-gray-200 dark-border-dark-5 rounded-2 p-5">
-                                        <div class="fw-medium d-flex align-items-center border-bottom border-gray-200 dark-border-dark-5 pb-5"> <i data-feather="chevron-down" class="w-4 h-4 me-2"></i> Text Content </div>
+                                
+                                <div class="mt-3">
+                                    <label for="post-form-7" class="form-label">Write Book short details:</label>
+                                    <input name="short_details" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Discount Price">
+                                </div>
+
+                                
+                                <div class="mt-5 border border-gray-200 dark-border-dark-5 rounded-2 p-5">
+                                        <div class="fw-medium d-flex align-items-center border-bottom border-gray-200 dark-border-dark-5 pb-5"> <i data-feather="chevron-down" class="w-4 h-4 me-2"></i> Write book description </div>
                                         <div class="mt-5">
-                                            <div class="editor">
-                                                <p>Content of the editor.</p>
-                                            </div>
+                                            <textarea name="description" class="editor">
+                                                
+                                            </textarea>
                                         </div>
-                                    </div>
-                                    <div class="border border-gray-200 dark-border-dark-5 rounded-2 p-5 mt-5">
-                                        <div class="fw-medium d-flex align-items-center border-bottom border-gray-200 dark-border-dark-5 pb-5"> <i data-feather="chevron-down" class="w-4 h-4 me-2"></i> Caption & Images </div>
-                                        <div class="mt-5">
-                                            <div>
-                                                <label for="post-form-7" class="form-label">Caption</label>
-                                                <input id="post-form-7" type="text" class="form-control" placeholder="Write caption">
-                                            </div>
-                                            <div class="mt-3">
-                                                <label class="form-label">Upload Image</label>
-                                                <div class="border-2 border-dashed dark-border-dark-5 rounded-2 pt-4">
-                                                    <div class="d-flex flex-wrap px-4">
-                                                        <div class="w-24 h-24 position-relative image-fit mb-5 me-5 cursor-pointer zoom-in">
-                                                            <img class="rounded-2" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/preview-15.jpg">
-                                                            <div title="Remove this image?" class="tooltip w-5 h-5 d-flex align-items-center justify-content-center position-absolute rounded-circle text-white bg-theme-6 end-0 top-0 me-n2 mt-n2"> <i data-feather="x" class="w-4 h-4"></i> </div>
+                                </div>
+                                        <div class="border border-gray-200 dark-border-dark-5 rounded-2 p-5 mt-5">
+                                            
+                                            <div class="mt-5">
+                                             
+                                                <div class="mt-3">
+                                                    <label class="form-label">Upload Image</label>
+                                                    <div class="border-2 border-dashed dark-border-dark-5 rounded-2 pt-4">
+                                                        <div class="d-flex flex-wrap px-4">
+                                                            <div class="w-24 h-24 position-relative image-fit mb-5 me-5 cursor-pointer zoom-in">
+                                                                <img id="preview-image" class="rounded-2" alt="Rubick Bootstrap HTML Admin Template" src="#">
+                                                            </div>
                                                         </div>
-                                                        <div class="w-24 h-24 position-relative image-fit mb-5 me-5 cursor-pointer zoom-in">
-                                                            <img class="rounded-2" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/preview-14.jpg">
-                                                            <div title="Remove this image?" class="tooltip w-5 h-5 d-flex align-items-center justify-content-center position-absolute rounded-circle text-white bg-theme-6 end-0 top-0 me-n2 mt-n2"> <i data-feather="x" class="w-4 h-4"></i> </div>
+                                                        <div class="px-4 pb-4 d-flex align-items-center cursor-pointer position-relative dark-text-gray-500">
+                                                            <i data-feather="image" class="w-4 h-4 me-2"></i> <span class="text-theme-1 dark-text-theme-10 me-1">Upload a file</span> or drag and drop 
+                                                            <input onchange="previewImage(event)" name="image" type="file" class="w-full h-full top-0 start-0 position-absolute opacity-0">
                                                         </div>
-                                                        <div class="w-24 h-24 position-relative image-fit mb-5 me-5 cursor-pointer zoom-in">
-                                                            <img class="rounded-2" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/preview-15.jpg">
-                                                            <div title="Remove this image?" class="tooltip w-5 h-5 d-flex align-items-center justify-content-center position-absolute rounded-circle text-white bg-theme-6 end-0 top-0 me-n2 mt-n2"> <i data-feather="x" class="w-4 h-4"></i> </div>
-                                                        </div>
-                                                        <div class="w-24 h-24 position-relative image-fit mb-5 me-5 cursor-pointer zoom-in">
-                                                            <img class="rounded-2" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/preview-13.jpg">
-                                                            <div title="Remove this image?" class="tooltip w-5 h-5 d-flex align-items-center justify-content-center position-absolute rounded-circle text-white bg-theme-6 end-0 top-0 me-n2 mt-n2"> <i data-feather="x" class="w-4 h-4"></i> </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="px-4 pb-4 d-flex align-items-center cursor-pointer position-relative dark-text-gray-500">
-                                                        <i data-feather="image" class="w-4 h-4 me-2"></i> <span class="text-theme-1 dark-text-theme-10 me-1">Upload a file</span> or drag and drop 
-                                                        <input type="file" class="w-full h-full top-0 start-0 position-absolute opacity-0">
                                                     </div>
                                                 </div>
                                             </div>
@@ -83,103 +62,94 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- END: Post Content -->
-                    <!-- BEGIN: Post Info -->
-                    <div class="g-col-12 g-col-lg-4">
-                        <div class="intro-y box p-5">
-                            <div>
-                                <label class="form-label">Written By</label>
-                                <div class="dropdown">
-                                    <div class="dropdown-toggle btn w-full btn-outline-secondary dark-bg-dark-2 dark-border-dark-2 d-flex align-items-center justify-content-start" role="button" aria-expanded="false" data-bs-toggle="dropdown">
-                                        <div class="w-6 h-6 image-fit me-3">
-                                            <img class="rounded" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/profile-9.jpg">
-                                        </div>
-                                        <div class="truncate">Brad Pitt</div>
-                                        <i class="w-4 h-4 ms-auto" data-feather="chevron-down"></i> 
+                        <!-- END: Post Content -->
+                        <!-- BEGIN: Post Info -->
+                        <div class="g-col-12 g-col-lg-4">
+                            <div class="intro-y box p-5">
+                                    <div class="mt-3">
+                                        <label class="form-label">Written By:</label>
+                                        <select  name="author"  data-placeholder="Search Author" class="tom-select w-full" id="post-form-4" >
+                                            <option value="Select this book author" selected disabled hidden>Select this book author</option>
+                                            {% for author in authors %}
+                                                <option value="{{author.id}}">{{author.name}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
-                                    <div class="dropdown-menu w-full">
-                                        <ul class="dropdown-content">
-                                            <li>
-                                                <a href="javascript:;" class="dropdown-item">
-                                                    <div class="w-6 h-6 position-absolute image-fit me-3">
-                                                        <img class="rounded" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/profile-9.jpg">
-                                                    </div>
-                                                    <div class="ms-8 ps-1">Brad Pitt</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" class="dropdown-item">
-                                                    <div class="w-6 h-6 position-absolute image-fit me-3">
-                                                        <img class="rounded" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/profile-5.jpg">
-                                                    </div>
-                                                    <div class="ms-8 ps-1">Russell Crowe</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" class="dropdown-item">
-                                                    <div class="w-6 h-6 position-absolute image-fit me-3">
-                                                        <img class="rounded" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/profile-7.jpg">
-                                                    </div>
-                                                    <div class="ms-8 ps-1">Sylvester Stallone</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" class="dropdown-item">
-                                                    <div class="w-6 h-6 position-absolute image-fit me-3">
-                                                        <img class="rounded" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/profile-15.jpg">
-                                                    </div>
-                                                    <div class="ms-8 ps-1">Denzel Washington</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" class="dropdown-item">
-                                                    <div class="w-6 h-6 position-absolute image-fit me-3">
-                                                        <img class="rounded" alt="Rubick Bootstrap HTML Admin Template" src="dist/images/profile-1.jpg">
-                                                    </div>
-                                                    <div class="ms-8 ps-1">Kevin Spacey</div>
-                                                </a>
-                                            </li>
-                                        </ul>
+
+                                    <div class="mt-3">
+                                        <label class="form-label">Category:</label>
+                                        <select name="category" data-placeholder="Search Author" class="tom-select w-full" id="post-form-3" >
+                                            <option value="Select this book author" selected disabled hidden>Select this book Category</option>
+                                            {% for category in categorys %}
+                                                <option value="{{category.id}}">{{category.name}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
+
+                                    <div class="mt-3">
+                                        <label class="form-label">Format:</label>
+                                        <select name="format" data-placeholder="Search format" class="tom-select w-full" id="post-form-1" >
+                                            <option value="Select this book author" selected disabled hidden>Select this book format</option>
+                                            {% for format in formats %}
+                                                <option value="{{format.id}}">{{format.format}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                <div class="mt-3">
+                                    <label for="post-form-2" class="form-label">Publication date:</label>
+                                    <input name="date" type="date" class="form-control" id="post-form-2" data-single-mode="true">
                                 </div>
+
+                                <div class="mt-3">
+                                    <label for="post-form-7" class="form-label">Book Code:</label>
+                                    <input name="book_code" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Code">
+                                </div>
+                                <div class="mt-3">
+                                    <label for="post-form-7" class="form-label">Language:</label>
+                                    <input name="language" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book stock">
+                                </div>
+                                <div class="mt-3">
+                                    <label for="post-form-7" class="form-label">Book Price:</label>
+                                    <input name="price" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Price">
+                                </div>
+
+                                <div class="mt-3">
+                                    <label for="post-form-7" class="form-label">Discount Price:</label>
+                                    <input name="discount_price" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Discount Price">
+                                </div>
+
+                                <div class="mt-3">
+                                    <label for="post-form-7" class="form-label">Total Stock:</label>
+                                    <input name="stock" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book stock">
+                                </div>
+
+
+                                <div class="mt-3">
+                                    <label for="post-form-7" class="form-label">Total page:</label>
+                                    <input name="page" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book stock">
+                                </div>
+
+                                
+
                             </div>
-                            <div class="mt-3">
-                                <label for="post-form-2" class="form-label">Post Date</label>
-                                <input class="datepicker form-control" id="post-form-2" data-single-mode="true">
-                            </div>
-                            <div class="mt-3">
-                                <label for="post-form-3" class="form-label">Categories</label>
-                                <select data-placeholder="Select categories" class="tom-select w-full" id="post-form-3" multiple>
-                                    <option value="1" selected>Horror</option>
-                                    <option value="2">Sci-fi</option>
-                                    <option value="3" selected>Action</option>
-                                    <option value="4">Drama</option>
-                                    <option value="5">Comedy</option>
-                                </select>
-                            </div>
-                            <div class="mt-3">
-                                <label for="post-form-4" class="form-label">Tags</label>
-                                <select data-placeholder="Select your favorite actors" class="tom-select w-full" id="post-form-4" multiple>
-                                    <option value="1" selected>Leonardo DiCaprio</option>
-                                    <option value="2">Johnny Deep</option>
-                                    <option value="3" selected>Robert Downey, Jr</option>
-                                    <option value="4">Samuel L. Jackson</option>
-                                    <option value="5">Morgan Freeman</option>
-                                </select>
-                            </div>
-                            <div class="form-check form-switch flex-column align-items-start ps-0 mt-3">
-                                <label for="post-form-5" class="form-check-label ms-0 mb-2">Published</label>
-                                <input id="post-form-5" class="form-check-input ms-0" type="checkbox">
-                            </div>
-                            <div class="form-check form-switch flex-column align-items-start ps-0 mt-3">
-                                <label for="post-form-6" class="form-check-label ms-0 mb-2">Show Author Name</label>
-                                <input id="post-form-6" class="form-check-input ms-0" type="checkbox">
+                        </div>
+                        <!-- END: Post Info -->
+                        <div class="intro-y d-flex flex-column flex-sm-row align-items-center mt-8">
+                            
+                            <div class="w-full w-sm-auto d-flex mt-4 mt-sm-0">
+                                
+                                <button type="button" class="btn box text-gray-700 dark-text-gray-300 me-2 d-flex align-items-center ms-auto ms-sm-0"> Cencel </button>
+                             
+                                    <button class="dropdown-toggle btn btn-primary shadow-md d-flex align-items-center" aria-expanded="false"> Save </button>
+                                    
+                               
                             </div>
                         </div>
                     </div>
-                    <!-- END: Post Info -->
-                </div>
+                </form>
+                
+                
             </div>
       
 

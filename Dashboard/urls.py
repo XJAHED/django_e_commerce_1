@@ -21,5 +21,9 @@ urlpatterns = [
     path('books/', all_books, name="all_books"),
     path('books/add_book/', add_book, name="add_book"),
     path('author/', author, name="author"),
+    path('author/author_edit/<int:id>', author_edit, name="author_edit"),
+    path('author/author_delete/<int:id>', author_delete, name="author_delete"),
+    path('author/author_add/', author_add, name="author_add"),
+    
     
 ]

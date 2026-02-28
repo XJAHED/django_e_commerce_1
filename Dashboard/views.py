@@ -100,8 +100,40 @@ def all_books(request):
     return render(request, 'html/dashboard/Books.html', context)
 
 def add_book(request):
-    return render(request, 'html/dashboard/add_book.html')
+    context={}
+    authors = Author.objects.all()
+    categorys = Category.objects.all()
+    all_formats = Format.objects.all()
+    context['formats'] = all_formats
+    context['categorys'] = categorys
+    context['authors'] = authors
+    if request.method =="POST":
+        name = request.POST.get('name')
+        short_details= request.POST.get('short_details')
+        description= request.POST.get('description')
+        author_id= request.POST.get('author')
+        author_instance = Author.objects.get(id=author_id)
+        
+        category_id= request.POST.get('category')
+        category_instance = Category.objects.get(id=category_id)
+        
+        date= request.POST.get('date')
+        book_code= request.POST.get('book_code')
+        price= request.POST.get('price')
+        discount_price= request.POST.get('discount_price')
+        stock = request.POST.get('stock')
+        image = request.FILES.get('image')
+        
+        format_id = request.POST.get('format')
+        format_instance = Format.objects.get(id=format_id)
+        page = request.POST.get('page')
+        language = request.POST.get('language')
 
+        book = Book(name=name, short_details=short_details, description=description, author=author_instance, category=category_instance, publication_data=date, book_code = book_code, price=price, discount_price=discount_price,stock=stock, image=image, format=format_instance, page=page, language=language)
+        book.save()
+        messages.success(request, "Add Successfully")
+        return redirect('dashboard:all_books')
+    return render(request, 'html/dashboard/add_book.html', context)
 
 
 
@@ -126,8 +158,6 @@ def product_by_author(request,id):
     context['books'] = book
     context['author'] = author
     return render(request, "html/dashboard/product_by_category.html", context)
-
-
 
 def edit_category(request, id):
     edit_category = get_object_or_404(Category,id=id)
@@ -160,3 +190,31 @@ def author(request):
     author = Author.objects.all()
     context["authors"] = author
     return render(request, 'html/dashboard/author.html', context)
+def author_edit(request, id):
+    edit = get_object_or_404(Author, id=id)
+    if request.method == "POST":
+        edit.name = request.POST.get('name')
+        edit.description = request.POST.get('description')
+        if request.FILES.get('image'):
+            edit.image = request.FILES.get('image')
+        edit.save()
+        messages.success(request, "Update Successfully")
+        return redirect('dashboard:author')
+    context={}
+    context['author'] = edit
+    return render(request, 'html/dashboard/author_edit.html', context)
+def author_delete(request,id):
+    delete = get_object_or_404(Author, id=id)
+    delete.delete()
+    messages.success(request, "Banner Delete Successfully")
+    return redirect('dashboard:author')
+def author_add(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        image = request.FILES.get('image')
+        author = Author(name=name, description=description, image=image)
+        author.save()
+        messages.success(request, "Add Successfully")
+        return redirect('dashboard:author')
+    return render(request, "html/dashboard/author_add.html")

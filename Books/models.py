@@ -4,6 +4,7 @@ from django_cleanup import cleanup
 import os
 from ckeditor.fields import RichTextField
 import random
+from datetime import date
 # Create your models here.
 
 def upload_image_path(instance, filename):
@@ -27,7 +28,11 @@ class Author(models.Model):
     
     def __str__(self):
         return self.name if self.name else "No Name"
-
+    
+class Format(models.Model):
+    format = models.CharField(max_length=250, blank=True, null=True)
+    def __str__(self):
+        return self.format if self.format else "No format"
 @cleanup.select
 class Book(models.Model):
     name = models.CharField(max_length=250, null=True, blank=True)
@@ -40,6 +45,10 @@ class Book(models.Model):
     description = RichTextField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, blank=True, null=True)
+    format = models.ForeignKey(Format, on_delete=models.PROTECT, blank=True, null=True)
+    page = models.IntegerField(max_length=250, blank=True, null=True)
+    publication_data = models.DateField(default=date.today)
+    language = models.CharField(max_length=250, blank=True, null=True)
     
     def __str__(self):
         return self.name if self.name else "No Name"
