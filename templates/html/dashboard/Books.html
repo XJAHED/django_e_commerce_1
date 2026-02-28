@@ -5,26 +5,13 @@
         <div class=" my-5 p-5 bg-light rounded">
             <div class="row align-items-center">
               
-                <div class="col-md-2">
-                    <h1 class="lead mb-0" style="font-size: 24px; color:#1c3faa; font-weight: 400;">BANNER SECTION</h1>
-
-                </div>
-            
-                <div class="col-md-5 d-flex ">
-                    <a href="{% url 'dashboard:add_banner' %}">
-                        <button type="button" class="btn btn-primary btn-lg">ADD BANNER</button>
-                    </a>
+                <div class="col-md-8">
+                    <h1 class="lead mb-0" style="font-size: 24px; color:#1c3faa; font-weight: 400;">ALL BOOKS</h1>
                 </div>
 
-                <div class="col-md-3 d-flex justify-content-end">
-                    <a href="{% url 'dashboard:on_sale_banner' sale_offers.id %}">
-                        <button type="button" class="btn btn-primary btn-lg">EDIT ON SALE OFFER</button>
-                    </a>
-                </div>
-
-                <div class="col-md-2 d-flex justify-content-end">
-                    <a href="{% url 'dashboard:edit_offer_banner' on_offers.id %}">
-                        <button type="button" class="btn btn-primary btn-lg">EDIT OFFER</button>
+                <div class="col-md-4 d-flex justify-content-end">
+                    <a href="{% url 'dashboard:add_book' %}">
+                        <button type="button" class="btn btn-primary btn-lg">ADD BOOK</button>
                     </a>
                 </div>
 
@@ -35,52 +22,59 @@
             <table class="table table-report mt-sm-2">
                 <thead>
                     <tr>
-                        <th class="text-nowrap"></th>
-
-                        <th class="text-nowrap">IMAGES</th>
-                        <th class="text-nowrap">TITLE</th>
-                        <th class="text-center text-nowrap">DESCRIPTION</th>
-                        <th class="text-center text-nowrap">STATUS</th>
-                        <th class="text-center text-nowrap">ACTIONS</th>
+                        <th class="text-center text-nowrap text-uppercase"></th>
+                        <th class=" text-nowrap text-uppercase">IMAGES</th>
+                        <th class="text-center text-nowrap text-uppercase">name</th>
+                        <th class="text-center text-nowrap text-uppercase">Category</th>
+                        <th class="text-center text-nowrap text-uppercase"> price</th>
+                        <th class="text-center text-nowrap text-uppercase">discount price</th>
+                      
+                        <th class="text-center text-nowrap text-uppercase">In Stocks</th>
+                        <th class="text-center text-center text-nowrap text-uppercase">ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for banner in banners %}
                     
+                    {% for book in books %}
                     <tr class="intro-x">
                         <td class="text-center">{{ forloop.counter }}</td>
                         <td class="w-40">
                             <div class="d-flex">
-                                <div class="w-10 h-10 image-fit zoom-in">
-                                    <img alt="Rubick Bootstrap HTML Admin Template" class="tooltip rounded-circle" src="{{ banner.image.url }}" title="{{ banner.title }}">
+                                <div class="w-10 h-10 image-fit zoom-in ">
+                                    <img alt="Rubick Bootstrap HTML Admin Template" class="tooltip rounded-circle" src="{{ book.image.url }}" title="Uploaded at 16 July 2021">
                                 </div>
                             </div>
                         </td>
-                        <td>
-                            <a href="index.html" class="fw-medium text-nowrap">{{ banner.title }}</a> 
+                        <td class="text-center">
+                            <a href="index.html" class="fw-medium text-nowrap ">{{ book.name }}</a> 
+                        </td>
+                        <td class="text-center">
+                            <a href="index.html" class="fw-medium text-nowrap ">{{ book.category }}</a> 
                             
                         </td>
-                        <td class="text-center">{{ banner.description|striptags|truncatewords:10 }}</td>
-                        
-                        {% if banner.is_active %}
-                        
-                        <td class="w-40">
-                            <div class="d-flex align-items-center justify-content-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 me-2"></i> Active </div>
+                        <td class="text-center">
+                            <a href="index.html" class="fw-medium text-nowrap">{{ book.price }}</a> 
+                            
                         </td>
-                        {% else %}
-
-                        <td class="w-40">
-                            <div class="d-flex align-items-center justify-content-center text-theme-6"> <i data-feather="check-square" class="w-4 h-4 me-2"></i> Inactive </div>
+                        <td class="text-center">
+                            <a href="index.html" class="fw-medium text-nowrap ">{{ book.discount_price }}</a> 
+                            
                         </td>
-                        {% endif %}
+                        <td class="text-center">
+                            <a href="index.html" class="fw-medium text-nowrap">{{ book.stock }}</a> 
+                            
+                        </td>
+                        
                         <td class="table-report__action w-56">
                             <div class="d-flex justify-content-center align-items-center">
-                                <a class="d-flex align-items-center me-3" href="{% url 'dashboard:editdata' banner.id  %}"> <i data-feather="check-square" class="w-4 h-4 me-1"></i> Edit </a>
-                                <a class="delete d-flex align-items-center text-theme-6" href="{% url 'dashboard:banner_delete' banner.id %}"> <i data-feather="trash-2" class="w-4 h-4 me-1"></i> Delete </a>
+                                <a class="d-flex align-items-center me-3" href=""> <i data-feather="check-square" class="w-4 h-4 me-1"></i> Edit </a>
+                                <a class="delete d-flex align-items-center text-theme-6" href=""> <i data-feather="trash-2" class="w-4 h-4 me-1"></i> Delete </a>
                             </div>
                         </td>
                     </tr>
                     {% endfor %}
+                    
+                    
                     
 
 

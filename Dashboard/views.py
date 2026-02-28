@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from banner.models import Banner, on_offer, sale_offer
+from banner.models import *
+from Books.models import *
 # Create your views here.
 @login_required
 def CustomAdmin(request):
@@ -88,7 +89,74 @@ def edit_offer_banner(request, id):
         edit_offer.save()
         messages.success(request, "Updated Successfully")
         return redirect('dashboard:banner_section')
-    
     context={}
     context['edit_offer'] = edit_offer
     return render(request, 'html/dashboard/edit_offer.html', context)
+
+def all_books(request):
+    context = {}
+    book = Book.objects.all()
+    context['books'] = book
+    return render(request, 'html/dashboard/Books.html', context)
+
+def add_book(request):
+    return render(request, 'html/dashboard/add_book.html')
+
+
+
+
+def book_category_page(request):
+    context ={}
+    category = Category.objects.all()
+    context['categorys'] = category
+    return render(request, "html/dashboard/books_category.html", context)
+
+def product_by_category(request,id):
+    context ={}
+    category = get_object_or_404(Category,id=id)
+    book = Book.objects.filter(category=category)
+    context['categorys'] = category
+    context['books'] = book
+    return render(request, "html/dashboard/product_by_category.html", context)
+
+def product_by_author(request,id):
+    context ={}
+    author = get_object_or_404(Author,id=id)
+    book = Book.objects.filter(author=author, stock__gt=0)
+    context['books'] = book
+    context['author'] = author
+    return render(request, "html/dashboard/product_by_category.html", context)
+
+
+
+def edit_category(request, id):
+    edit_category = get_object_or_404(Category,id=id)
+    if request.method == "POST":
+        edit_category.name = request.POST.get('name')
+        edit_category.save()
+        messages.success(request,"Updated Successfully")
+        return redirect('dashboard:book_category_page')
+    context={}
+    context['edit_category'] = edit_category
+    return render(request, 'html/dashboard/edit_category.html', context)
+
+def book_category_delete(request, id):
+     delete_category = get_object_or_404(Category,id=id)
+     delete_category.delete()
+     messages.success(request, "Banner Delete Successfully")
+     return redirect('dashboard:book_category_page')
+
+def add_book_category(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        category = Category(name=name)
+        category.save()
+        messages.success(request, "Category Add Successfully")
+        return redirect('dashboard:book_category_page')
+    return render(request, "html/dashboard/add_book_category.html")
+
+def author(request):
+    context ={}
+    author = Author.objects.all()
+    context["authors"] = author
+    return render(request, 'html/dashboard/author.html', context)

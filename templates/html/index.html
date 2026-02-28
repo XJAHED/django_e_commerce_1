@@ -1,7 +1,9 @@
 {% extends '../base.html' %}
 {% load static %}
 {% block main_content %}
-
+{% for book in books %}
+  <h1>{{ book.name }}</h1>
+{% endfor %}
 <section class="space-bottom-3">
 <div class="container-fluid px-3 px-md-5 px-xl-8d75">
 <div class="row">

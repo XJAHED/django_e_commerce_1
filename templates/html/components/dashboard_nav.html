@@ -36,15 +36,20 @@
                             <div class="side-menu__title"> BANNER </div>
                         </a>
                     </li>
-
                     <li>
-                        <a href="side-menu-light-file-manager.html" class="side-menu">
+                        <a href="{% url 'dashboard:all_books' %}" class="side-menu">
                             <div class="side-menu__icon"> <i data-feather="book"></i> </div>
-                            <div class="side-menu__title"> BOOKS </div>
+                            <div class="side-menu__title"> BOOKS</div>
                         </a>
                     </li>
                     <li>
-                        <a href="side-menu-light-file-manager.html" class="side-menu">
+                        <a href="{% url 'dashboard:book_category_page' %}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="briefcase"></i> </div>
+                            <div class="side-menu__title"> BOOKS CATEGORY</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'dashboard:author' %}" class="side-menu">
                             <div class="side-menu__icon"> <i data-feather="award"></i> </div>
                             <div class="side-menu__title"> AUTHOR </div>
                         </a>
