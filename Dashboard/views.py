@@ -92,13 +92,13 @@ def edit_offer_banner(request, id):
     context={}
     context['edit_offer'] = edit_offer
     return render(request, 'html/dashboard/edit_offer.html', context)
-
+@login_required
 def all_books(request):
     context = {}
     book = Book.objects.all()
     context['books'] = book
     return render(request, 'html/dashboard/Books.html', context)
-
+@login_required
 def add_book(request):
     context={}
     authors = Author.objects.all()
@@ -134,15 +134,51 @@ def add_book(request):
         messages.success(request, "Add Successfully")
         return redirect('dashboard:all_books')
     return render(request, 'html/dashboard/add_book.html', context)
-
-
-
+@login_required
+def edit_book(request, id):
+    edit_book = get_object_or_404(Book, id=id)
+    authors = Author.objects.all()
+    categorys = Category.objects.all()
+    all_formats = Format.objects.all()
+    context={}
+    context['formats'] = all_formats
+    context['categorys'] = categorys
+    context['authors'] = authors
+    context['edit_books']=edit_book
+    if request.method=="POST":
+        edit_book.name = request.POST.get('name')
+        edit_book.short_details= request.POST.get('short_details')
+        edit_book.description= request.POST.get('description')
+        edit_book.author_id= request.POST.get('author')
+        edit_book.category_id= request.POST.get('category')
+        edit_book.date= request.POST.get('date')
+        edit_book.book_code= request.POST.get('book_code')
+        edit_book.price= request.POST.get('price')
+        edit_book.discount_price= request.POST.get('discount_price')
+        edit_book.stock = request.POST.get('stock')
+        if request.FILES.get('image'):
+            edit_book.image = request.FILES.get('image')
+        edit_book.format_id = request.POST.get('format')
+        edit_book.page = request.POST.get('page')
+        edit_book.language = request.POST.get('language')
+        
+        edit_book.save()
+        messages.success(request,"Updated Successfully")
+        return redirect('dashboard:all_books')
+    return render(request, 'html/dashboard/edit_book.html', context)
+@login_required
+def delete_book(request,id):
+    delete_book = get_object_or_404(Book, id=id)
+    delete_book.delete()
+    messages.success(request, "Book delete Successfully")
+    return redirect('dashboard:all_books')
+@login_required
 def book_category_page(request):
     context ={}
     category = Category.objects.all()
     context['categorys'] = category
     return render(request, "html/dashboard/books_category.html", context)
-
+@login_required
 def product_by_category(request,id):
     context ={}
     category = get_object_or_404(Category,id=id)
@@ -150,7 +186,7 @@ def product_by_category(request,id):
     context['categorys'] = category
     context['books'] = book
     return render(request, "html/dashboard/product_by_category.html", context)
-
+@login_required
 def product_by_author(request,id):
     context ={}
     author = get_object_or_404(Author,id=id)
@@ -158,7 +194,7 @@ def product_by_author(request,id):
     context['books'] = book
     context['author'] = author
     return render(request, "html/dashboard/product_by_category.html", context)
-
+@login_required
 def edit_category(request, id):
     edit_category = get_object_or_404(Category,id=id)
     if request.method == "POST":
@@ -169,13 +205,13 @@ def edit_category(request, id):
     context={}
     context['edit_category'] = edit_category
     return render(request, 'html/dashboard/edit_category.html', context)
-
+@login_required
 def book_category_delete(request, id):
      delete_category = get_object_or_404(Category,id=id)
      delete_category.delete()
      messages.success(request, "Banner Delete Successfully")
      return redirect('dashboard:book_category_page')
-
+@login_required
 def add_book_category(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -184,12 +220,13 @@ def add_book_category(request):
         messages.success(request, "Category Add Successfully")
         return redirect('dashboard:book_category_page')
     return render(request, "html/dashboard/add_book_category.html")
-
+@login_required
 def author(request):
     context ={}
     author = Author.objects.all()
     context["authors"] = author
     return render(request, 'html/dashboard/author.html', context)
+@login_required
 def author_edit(request, id):
     edit = get_object_or_404(Author, id=id)
     if request.method == "POST":
@@ -203,11 +240,15 @@ def author_edit(request, id):
     context={}
     context['author'] = edit
     return render(request, 'html/dashboard/author_edit.html', context)
+
+@login_required
 def author_delete(request,id):
     delete = get_object_or_404(Author, id=id)
     delete.delete()
     messages.success(request, "Banner Delete Successfully")
     return redirect('dashboard:author')
+
+@login_required
 def author_add(request):
     if request.method == "POST":
         name = request.POST.get('name')

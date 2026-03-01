@@ -10,8 +10,41 @@
 <script src="{% static 'dashboard/js/app.js' %}"></script>
 <!-- END: JS Assets-->
 <script src="{% static 'dashboard/js/ckeditor-classic.js' %}"></script>
+<script>
+    new TomSelect("#post-form-4", {
+        create: false,
+        sortField: { field: "text", direction: "asc" }
+    });
+</script>
 
+<script>
+    function toggle_book(){
+        const all_books = document.getElementById('all_books');
+        const upcoming_books = document.getElementById('upcoming_books');
+    
+        if (all_books.style.display === "none") {
+            all_books.style.display = "table-row-group";
+            upcoming_books.style.display = "none";
+        } else {
+            all_books.style.display = "none";
+            upcoming_books.style.display = "table-row-group";
+        }
+    }
+</script>
 
+<script>
+    const stockStatus = document.getElementById("stockStatus");
+    const stockInput = document.getElementById("stockInput");
+
+    stockStatus.addEventListener("change", function() {
+        if (this.value === "upcoming") {
+            stockInput.value = 0;
+            stockInput.readOnly = true;   // চাইলে lock করে দিতে পারো
+        } else {
+            stockInput.readOnly = false;  // আবার editable হবে
+        }
+    });
+</script>
 
 {% if messages %}
 <script>

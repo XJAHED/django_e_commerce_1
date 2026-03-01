@@ -8,7 +8,7 @@
                 <!-- BEGIN: Top Bar -->
                 
                 <!-- END: Top Bar -->
-                <form action="{% url 'dashboard:add_book' %}" method="POST" enctype="multipart/form-data">
+                <form action="{% url 'dashboard:edit_book' edit_books.id %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="pos intro-y grid columns-12 gap-5 mt-5">
                     
@@ -16,7 +16,7 @@
                         <div class="intro-y g-col-12 g-col-lg-8">
                             <div class="mt-3">
                                 <label for="post-form-7" class="form-label">Book Name</label>
-                                <input name="name" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Name">
+                                <input name="name" value="{{edit_books.name}}" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Name">
                             </div>
 
                             <div class="post intro-y overflow-hidden box mt-5">
@@ -26,15 +26,15 @@
                                 
                                 <div class="mt-3">
                                     <label for="post-form-7" class="form-label">Write Book short details:</label>
-                                    <input name="short_details" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Discount Price">
+                                    <input name="short_details" value="{{edit_books.short_details}}" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Discount Price">
                                 </div>
 
                                 
                                 <div class="mt-5 border border-gray-200 dark-border-dark-5 rounded-2 p-5">
                                         <div class="fw-medium d-flex align-items-center border-bottom border-gray-200 dark-border-dark-5 pb-5"> <i data-feather="chevron-down" class="w-4 h-4 me-2"></i> Write book description </div>
                                         <div class="mt-5">
-                                            <textarea name="description" class="editor">
-                                                
+                                            <textarea name="description" class="editor" >
+                                                <p>{{edit_books.description}}</p>
                                             </textarea>
                                         </div>
                                 </div>
@@ -47,7 +47,7 @@
                                                     <div class="border-2 border-dashed dark-border-dark-5 rounded-2 pt-4">
                                                         <div class="d-flex flex-wrap px-4">
                                                             <div class="w-24 h-24 position-relative image-fit mb-5 me-5 cursor-pointer zoom-in">
-                                                                <img id="preview-image" class="rounded-2" alt="Rubick Bootstrap HTML Admin Template" src="#">
+                                                                <img id="preview-image" class="rounded-2" alt="Rubick Bootstrap HTML Admin Template" src="{{edit_books.image.url}}">
                                                             </div>
                                                         </div>
                                                         <div class="px-4 pb-4 d-flex align-items-center cursor-pointer position-relative dark-text-gray-500">
@@ -69,7 +69,7 @@
                                     <div class="mt-3">
                                         <label class="form-label">Written By:</label>
                                         <select  name="author"  data-placeholder="Search Author" class="tom-select w-full" id="post-form-4" >
-                                            <option value="Select this book author" selected disabled hidden>Select this book author</option>
+                                            <option value="{{edit_books.author.id}}" selected >{{edit_books.author.name}}</option>
                                             {% for author in authors %}
                                                 <option value="{{author.id}}">{{author.name}}</option>
                                             {% endfor %}
@@ -79,7 +79,7 @@
                                     <div class="mt-3">
                                         <label class="form-label">Category:</label>
                                         <select name="category" data-placeholder="Search Author" class="tom-select w-full" id="post-form-3" >
-                                            <option value="Select this book author" selected disabled hidden>Select this book Category</option>
+                                            <option value="{{edit_books.category.id}}" selected>{{edit_books.category}}</option>
                                             {% for category in categorys %}
                                                 <option value="{{category.id}}">{{category.name}}</option>
                                             {% endfor %}
@@ -89,7 +89,7 @@
                                     <div class="mt-3">
                                         <label class="form-label">Format:</label>
                                         <select name="format" data-placeholder="Search format" class="tom-select w-full" id="post-form-1" >
-                                            <option value="Select this book author" selected disabled hidden>Select this book format</option>
+                                            <option value="{{edit_books.format.id}}" selected>{{edit_books.format}}</option>
                                             {% for format in formats %}
                                                 <option value="{{format.id}}">{{format.format}}</option>
                                             {% endfor %}
@@ -98,44 +98,50 @@
 
                                 <div class="mt-3">
                                     <label for="post-form-2" class="form-label">Publication date:</label>
-                                    <input name="date" type="date" class="form-control" id="post-form-2" data-single-mode="true">
+                                    <input value="{{edit_books.publication_data|date:'Y-m-d'}}" name="date" type="date" class="form-control" id="post-form-2" data-single-mode="true">
                                 </div>
 
                                 <div class="mt-3">
                                     <label for="post-form-7" class="form-label">Book Code:</label>
-                                    <input name="book_code" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Code">
+                                    <input value="{{edit_books.book_code}}" name="book_code" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Code">
                                 </div>
                                 <div class="mt-3">
                                     <label for="post-form-7" class="form-label">Language:</label>
-                                    <input name="language" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book stock">
+                                    <input value="{{edit_books.language}}" name="language" type="text" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book stock">
                                 </div>
                                 <div class="mt-3">
                                     <label for="post-form-7" class="form-label">Book Price:</label>
-                                    <input name="price" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Price">
+                                    <input value="{{edit_books.price}}" name="price" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Price">
                                 </div>
 
                                 <div class="mt-3">
                                     <label for="post-form-7" class="form-label">Discount Price:</label>
-                                    <input name="discount_price" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Discount Price">
+                                    <input value="{{edit_books.discount_price}}" name="discount_price" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book Discount Price">
                                 </div>
-                                
                                 <div class="mt-3">
                                     <label class="form-label">Stock Status:</label>
                                     <select id="stockStatus" name="stock_status" class="form-control">
-                                        <option value="available">In Stock</option>
+                                        {% if edit_books.stock != 0 %}
+                                        <option value="available" selected>In Stock</option>
                                         <option value="upcoming">Upcoming</option>
+
+                                        {% else %}
+                                        <option value="available">In Stock</option>
+                                        <option value="upcoming" selected>Upcoming</option>
+                                        {% endif %}
+                                        
                                     </select>
                                 </div>
                                 
                                 <div class="mt-3">
                                     <label class="form-label">Total Stock:</label>
-                                    <input id="stockInput" name="stock" type="number" class="form-control" placeholder="Book stock">
+                                    <input value="{{edit_books.stock}}" id="stockInput" name="stock" type="number" class="form-control" placeholder="Book stock">
                                 </div>
 
 
                                 <div class="mt-3">
                                     <label for="post-form-7" class="form-label">Total page:</label>
-                                    <input name="page" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13" placeholder="Book stock">
+                                    <input value="{{edit_books.page}}" name="page" type="number" class="intro-y form-control py-3 px-4 box border-white dark-border-dark-3 pe-10 placeholder-theme-13">
                                 </div>
 
                                 
@@ -143,13 +149,13 @@
                             </div>
                         </div>
                         <!-- END: Post Info -->
-                        <div class="intro-y d-flex flex-column flex-sm-row align-items-center mt-8">
+                        <div class="intro-y d-flex flex-column flex-sm-row align-items-end mt-8">
                             
                             <div class="w-full w-sm-auto d-flex mt-4 mt-sm-0">
                                 
-                                <button type="button" class="btn box text-gray-700 dark-text-gray-300 me-2 d-flex align-items-center ms-auto ms-sm-0"> Cencel </button>
+                                <a href="{% url 'dashboard:all_books' %}"><button type="button" class="btn box text-gray-700 dark-text-gray-300 me-2 d-flex ms-auto ms-sm-0"> Cencel </button></a>
                              
-                                    <button class="dropdown-toggle btn btn-primary shadow-md d-flex align-items-center" aria-expanded="false"> Save </button>
+                                <button href="{% url 'dashboard:all_books' %}" class="dropdown-toggle btn btn-primary shadow-md d-flex align-items-center" aria-expanded="false"> Save </button>
                                     
                                
                             </div>
