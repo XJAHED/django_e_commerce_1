@@ -20,7 +20,10 @@
                             </div>
 
                             <div class="post intro-y overflow-hidden box mt-5">
-
+                                <div class="form-check form-switch mt-8" style="margin-left: 25px;">
+                                    <input  class="form-check-input" type="checkbox" name="featured" id="isActiveCheckbox" {% if edit_books.featured %}checked{% endif %}>
+                                    <label class="form-check-label" for="isActiveCheckbox">Is featured</label>
+                                </div>
                             <div class="post__content tab-content">
                                 <div class="tab-pane p-5 fade show active" id="content" role="tabpanel" aria-labelledby="content-tab">
                                 

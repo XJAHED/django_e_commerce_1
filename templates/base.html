@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
 </head>
 <body>
+
     {% include 'html/components/header.html' %}
     {% block main_content %}
     {% endblock main_content %}
@@ -39,6 +40,22 @@
 <script src="{% static 'assets/js/components/hs.selectpicker.js' %}"></script>
 <script src="{% static 'assets/js/components/hs.show-animation.js' %}"></script>
 <script src="{% static 'assets/vendor/slick-carousel/slick/slick.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    {% for message in messages %}
+        Swal.fire({
+            icon: "{{ message.tags }}",
+            title: "{{ message }}",
+            timer: 2000,
+            showConfirmButton: false
+        });
+    {% endfor %}
+});
+</script>
+{% endif %}
 
 
 <script>

@@ -7,7 +7,7 @@
     </div>
     
     <!-- BEGIN: Post Content -->
-    <form action="{% url 'dashboard:author_edit' author.id %}" method="POST">
+    <form action="{% url 'dashboard:author_edit' author.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="intro-y g-col-12 g-col-lg-8">
             <div class="fw-medium d-flex align-items-center border-bottom border-gray-200 dark-border-dark-5 pb-5"> Name</div>

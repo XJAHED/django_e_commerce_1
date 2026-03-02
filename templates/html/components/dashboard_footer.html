@@ -1,7 +1,6 @@
 {% load static %}
 
 
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- BEGIN: JS Assets-->
@@ -39,9 +38,9 @@
     stockStatus.addEventListener("change", function() {
         if (this.value === "upcoming") {
             stockInput.value = 0;
-            stockInput.readOnly = true;   // চাইলে lock করে দিতে পারো
+            stockInput.readOnly = true;  
         } else {
-            stockInput.readOnly = false;  // আবার editable হবে
+            stockInput.readOnly = false;
         }
     });
 </script>

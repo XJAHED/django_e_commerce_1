@@ -113,10 +113,9 @@ def add_book(request):
         description= request.POST.get('description')
         author_id= request.POST.get('author')
         author_instance = Author.objects.get(id=author_id)
-        
+        featured =True if request.POST.get('featured') else False
         category_id= request.POST.get('category')
         category_instance = Category.objects.get(id=category_id)
-        
         date= request.POST.get('date')
         book_code= request.POST.get('book_code')
         price= request.POST.get('price')
@@ -129,7 +128,7 @@ def add_book(request):
         page = request.POST.get('page')
         language = request.POST.get('language')
 
-        book = Book(name=name, short_details=short_details, description=description, author=author_instance, category=category_instance, publication_data=date, book_code = book_code, price=price, discount_price=discount_price,stock=stock, image=image, format=format_instance, page=page, language=language)
+        book = Book(name=name, short_details=short_details, description=description, author=author_instance, category=category_instance, publication_data=date, book_code = book_code, price=price, discount_price=discount_price,stock=stock, image=image,featured=featured, format=format_instance, page=page, language=language)
         book.save()
         messages.success(request, "Add Successfully")
         return redirect('dashboard:all_books')
@@ -156,6 +155,7 @@ def edit_book(request, id):
         edit_book.price= request.POST.get('price')
         edit_book.discount_price= request.POST.get('discount_price')
         edit_book.stock = request.POST.get('stock')
+        edit_book.featured = True if request.POST.get('featured') == 'on' else False
         if request.FILES.get('image'):
             edit_book.image = request.FILES.get('image')
         edit_book.format_id = request.POST.get('format')
