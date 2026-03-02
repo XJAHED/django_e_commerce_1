@@ -27,7 +27,6 @@ def home_page(request):
     context['authors']=author
     return render(request, 'html/index.html', context)
 
-
 def Subscriber_user(request):
     if request.method == "POST":
         email = request.POST.get('subscriber')
@@ -38,3 +37,24 @@ def Subscriber_user(request):
             messages.warning(request, "Already Subscribed")
 
     return redirect('home_page')
+
+def shop_page(request):
+    context={}
+    author = Author.objects.all()
+    context['authors']=author
+    category = Category.objects.all()
+    context['categorys']=category
+    book = Book.objects.all()
+    context['books']=book
+    return render(request, 'html/shop/v1.html', context)
+
+def single_book(request,id):
+    context={}
+    
+    book = get_object_or_404(Book, id=id)
+    context['books']=book
+    
+    related_books = Book.objects.filter(category=book.category).exclude(id=id)
+    context['related_books']=related_books
+    
+    return render(request, "html/shop/single-product-v1.html", context)

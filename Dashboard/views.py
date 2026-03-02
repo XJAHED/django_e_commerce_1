@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from banner.models import *
 from Books.models import *
+from IndexPage.models import *
 # Create your views here.
 @login_required
 def CustomAdmin(request):
@@ -259,3 +260,15 @@ def author_add(request):
         messages.success(request, "Add Successfully")
         return redirect('dashboard:author')
     return render(request, "html/dashboard/author_add.html")
+@login_required
+def subscribers(request):
+    context={}
+    sub = Subscriber.objects.all()
+    context['subscribers'] =sub
+    return render(request, 'html/dashboard/subscribers.html', context)
+@login_required
+def delete_subscribers(request,id):
+    sub = get_object_or_404(Subscriber, id=id)
+    sub.delete()
+    messages.success(request, "Subscribers Delete Successfully")
+    return redirect('dashboard:subscribers')

@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% block main_content %}
+
+
+
+
+<div class="page-header border-bottom">
+<div class="container">
+<div class="d-md-flex justify-content-between align-items-center py-4">
+<h1 class="page-title font-size-3 font-weight-medium m-0 text-lh-lg">Shop Single</h1>
+<nav class="woocommerce-breadcrumb font-size-2">
+<a href="../home/index.html" class="h-primary">Home</a>
+<span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>
+<a href="v1.html" class="h-primary">Shop</a>
+<span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>{{books.name}}
+</nav>
+</div>
+</div>
+</div>
+<div id="primary" class="content-area">
+<main id="main" class="site-main ">
+<div class="product">
+<div class="container">
+<div class="row">
+<div class="col-md-5 woocommerce-product-gallery woocommerce-product-gallery--with-images images">
+<figure class="woocommerce-product-gallery__wrapper pt-8 mb-0">
+<div class="js-slick-carousel u-slick" data-pagi-classes="text-center u-slick__pagination my-4">
+<div class="js-slide">
+<img src="{{books.image.url}}" alt="Image Description" class="mx-auto img-fluid">
+</div>
+</div>
+</figure>
+</div>
+<div class="col-md-7 pl-0 summary entry-summary border-left">
+<div class="space-top-2 px-4 px-xl-7 border-bottom pb-5">
+<h1 class="product_title entry-title font-size-7 mb-3">{{books.name}}</h1>
+<div class="font-size-2 mb-4">
+
+<span class="ml-3 font-weight-medium">By (author)</span>
+<span class="ml-2 text-gray-600">{{books.author}}</span>
+</div>
+<p class="price font-size-22 font-weight-medium mb-3">
+<span class="woocommerce-Price-amount amount" style="text-decoration: line-through;">
+<span class="woocommerce-Price-currencySymbol" >$</span>{{books.price}}
+</span> :
+<span class="woocommerce-Price-amount amount">
+<span class="woocommerce-Price-currencySymbol">$</span>{{books.discount_price}}
+</span>
+</p>
+<div class="mb-2 font-size-2">
+<span class="font-weight-medium">Book Format:</span>
+<span class="ml-2 text-gray-600">{{books.format}}</span>
+</div>
+
+
+
+<div class="woocommerce-product-details__short-description font-size-2 mb-5">
+<p class>{{books.short_details}}</p>
+</div>
+<form class="cart d-md-flex align-items-center" method="post" enctype="multipart/form-data">
+<div class="quantity mb-4 mb-md-0 d-flex align-items-center">
+
+<div class="border px-3 width-120">
+<div class="js-quantity">
+<div class="d-flex align-items-center">
+<label class="screen-reader-text sr-only">Quantity</label>
+<a class="js-minus text-dark" href="javascript:;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10px" height="1px">
+<path fill-rule="evenodd" fill="rgb(22, 22, 25)" d="M-0.000,-0.000 L10.000,-0.000 L10.000,1.000 L-0.000,1.000 L-0.000,-0.000 Z" />
+</svg>
+</a>
+<input type="number" class="input-text qty text js-result form-control text-center border-0" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
+<a class="js-plus text-dark" href="javascript:;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10px" height="10px">
+<path fill-rule="evenodd" fill="rgb(22, 22, 25)" d="M10.000,5.000 L6.000,5.000 L6.000,10.000 L5.000,10.000 L5.000,5.000 L-0.000,5.000 L-0.000,4.000 L5.000,4.000 L5.000,-0.000 L6.000,-0.000 L6.000,4.000 L10.000,4.000 L10.000,5.000 Z" />
+</svg>
+</a>
+</div>
+</div>
+</div>
+
+</div>
+<button type="submit" name="add-to-cart" value="7145" class="btn btn-dark border-0 rounded-0 p-3 min-width-250 ml-md-4 single_add_to_cart_button button alt">Add to cart</button>
+</form>
+</div>
+<div class="px-4 px-xl-7 py-5 d-flex align-items-center">
+<ul class="list-unstyled nav">
+<li class="mr-6 mb-4 mb-md-0">
+<a href="single-product-v1.html#" class="h-primary"><i class="flaticon-heart mr-2"></i> Add to Wishlist</a>
+</li>
+<li class="mr-6">
+<a href="single-product-v1.html#" class="h-primary"><i class="flaticon-share mr-2"></i> Share</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="js-scroll-nav mb-10">
+<div class="woocommerce-tabs wc-tabs-wrapper  2 mx-lg-auto">
+<div id="Description" class>
+<div class="border-top border-bottom">
+<ul class="container tabs wc-tabs nav justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
+<li class="flex-shrink-0 flex-md-shrink-1 nav-item active">
+<a class="nav-link py-4 font-weight-medium active" href="single-product-v1.html#Description">
+Description
+</a>
+</li>
+
+</ul>
+</div>
+
+<div class="tab-content font-size-2 container">
+<div class="row">
+<div class="col-xl-8 offset-xl-2">
+<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab pt-9">
+
+<p class="mb-0">{{books.description}}</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<div id="ProductDetails" class>
+<div class="border-top border-bottom">
+<ul class="container tabs wc-tabs nav justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
+
+<li class="flex-shrink-0 flex-md-shrink-1 nav-item active">
+<a class="nav-link py-4 font-weight-medium active" href="single-product-v1.html#ProductDetails">
+Product Details
+</a>
+</li>
+
+</ul>
+</div>
+
+<div class="tab-content font-size-2 container">
+<div class="row">
+<div class="col-xl-8 offset-xl-2">
+<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab pt-9">
+
+<div class="table-responsive mb-4">
+<table class="table table-hover table-borderless">
+<tbody>
+<tr>
+<th class="px-4 px-xl-5">Format: </th>
+<td class>{{books.format}}</td>
+</tr>
+<tr>
+    <th class="px-4 px-xl-5">Pages: </th>
+    <td class>{{books.page}} Pages</td>
+    </tr>
+
+<tr>
+<th class="px-4 px-xl-5">Publication date: </th>
+<td>{{books.publication_data}}</td>
+</tr>
+
+<tr>
+<th class="px-4 px-xl-5">Author:</th>
+<td>{{books.author}}</td>
+</tr>
+
+<tr>
+<th class="px-4 px-xl-5">Language:</th>
+<td>{{books.language}}</td>
+</tr>
+<tr>
+    <th class="px-4 px-xl-5">category:</th>
+    <td>{{books.category}}</td>
+    </tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+
+<section class="space-bottom-3">
+<div class="container">
+<header class="mb-5 d-md-flex justify-content-between align-items-center">
+<h2 class="font-size-7 mb-3 mb-md-0">Customers Also Considered</h2>
+</header>
+<div class="js-slick-carousel products no-gutters border-top border-left border-right" data-arrows-classes="u-slick__arrow u-slick__arrow-centered--y" data-arrow-left-classes="fas fa-chevron-left u-slick__arrow-inner u-slick__arrow-inner--left ml-lg-n10" data-arrow-right-classes="fas fa-chevron-right u-slick__arrow-inner u-slick__arrow-inner--right mr-lg-n10" data-slides-show="5" data-responsive="[{
+                               &quot;breakpoint&quot;: 1500,
+                               &quot;settings&quot;: {
+                                 &quot;slidesToShow&quot;: 4
+                               }
+                            },{
+                               &quot;breakpoint&quot;: 1199,
+                               &quot;settings&quot;: {
+                                 &quot;slidesToShow&quot;: 3
+                               }
+                            }, {
+                               &quot;breakpoint&quot;: 992,
+                               &quot;settings&quot;: {
+                                 &quot;slidesToShow&quot;: 2
+                               }
+                            }, {
+                               &quot;breakpoint&quot;: 554,
+                               &quot;settings&quot;: {
+                                 &quot;slidesToShow&quot;: 2
+                               }
+                            }]">
+
+{% for book in related_books %}
+<div class="product">
+    <div class="product__inner overflow-hidden p-3 p-md-4d875">
+    <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
+    <div class="woocommerce-loop-product__thumbnail">
+    <a href="single-product-v3.html" class="d-block"><img src="{{book.image.url}}" class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid" alt="image-description"></a>
+    </div>
+    <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+    <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="single-product-v3.html">{{book.format}}</a></div>
+    <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="single-product-v3.html">{{books.name}}</a></h2>
+    <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-gray-700">{{books.author}}</a></div>
+    <div class="price d-flex align-items-center font-weight-medium font-size-3">
+    <span class="woocommerce-Price-amount amount" style="text-decoration: line-through;"><span class="woocommerce-Price-currencySymbol">$</span>{{books.price}}</span> ->
+    <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>{{books.price}}</span>
+    </div>
+    </div>
+    <div class="product__hover d-flex align-items-center">
+    <a href="single-product-v3.html" class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
+    <span class="product__add-to-cart">ADD TO CART</span>
+    <span class="product__add-to-cart-icon font-size-4"><i class="flaticon-icon-126515"></i></span>
+    </a>
+    <a href="single-product-v3.html" class="mr-1 h-p-bg btn btn-outline-primary border-0">
+    <i class="flaticon-switch"></i>
+    </a>
+    <a href="single-product-v3.html" class="h-p-bg btn btn-outline-primary border-0">
+    <i class="flaticon-heart"></i>
+    </a>
+    </div>
+    </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+{% endblock main_content %}

@@ -26,6 +26,6 @@ urlpatterns = [
     path('author/author_edit/<int:id>', author_edit, name="author_edit"),
     path('author/author_delete/<int:id>', author_delete, name="author_delete"),
     path('author/author_add/', author_add, name="author_add"),
-    
-    
+    path('subscribers/',subscribers, name="subscribers"),
+    path("delete_subscribers/<int:id>", delete_subscribers, name="delete_subscribers"),
 ]
