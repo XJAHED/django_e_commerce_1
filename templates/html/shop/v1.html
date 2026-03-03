@@ -969,7 +969,8 @@ Remember me
 <div id="primary" class="col-9 content-area order-2">
 <div class="shop-control-bar d-lg-flex justify-content-between align-items-center mb-5 text-center text-md-left">
 <div class="shop-control-bar__left mb-4 m-lg-0">
-<p class="woocommerce-result-count m-0">Showing 1–12 of 126 results</p>
+<p class="woocommerce-result-count m-0">Showing {{books.start_index}}–{{books.end_index}} of {{books.paginator.count}} results</p>
+
 </div>
 <div class="shop-control-bar__right d-md-flex align-items-center">
 <form class="woocommerce-ordering mb-4 m-md-0" method="get">
@@ -1256,13 +1257,37 @@ Remember me
 
 <nav aria-label="Page navigation example">
 <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
-<li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="v1.html#">Previous</a></li>
-<li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="v1.html#">1</a></li>
-<li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="v1.html#">2</a></li>
-<li class="flex-shrink-0 flex-md-shrink-1 page-item active" aria-current="page"><a class="page-link" href="v1.html#">3</a></li>
-<li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="v1.html#">4</a></li>
-<li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="v1.html#">5</a></li>
-<li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="v1.html#">Next</a></li>
+
+
+{% if books.has_previous %}
+<li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="?page={{ books.previous_page_number }}">Previous</a></li>
+{% endif %}
+<!-- Page Numbers -->
+{% for num in books.paginator.page_range %}
+    
+    {% if num >= books.number|add:'-1' and num <= books.number|add:'1' %}
+        
+        {% if books.number == num %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+        {% endif %}
+    
+    {% endif %}
+
+{% endfor %}
+
+
+{% if books.has_next %}
+<li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="?page={{ books.next_page_number }}">Next</a>
+</li>
+{% endif %}
+
+
 </ul>
 </nav>
 </div>
@@ -1324,43 +1349,7 @@ Remember me
 </ul>
 </div>
 </div>
-<div id="Language" class="widget p-4d875 border">
-<div id="widgetHeading22" class="widget-head">
-<a class="d-flex align-items-center justify-content-between text-dark" href="v1.html#" data-toggle="collapse" data-target="#widgetCollapse22" aria-expanded="true" aria-controls="widgetCollapse22">
-<h3 class="widget-title mb-0 font-weight-medium font-size-3">Language</h3>
-<svg class="mins" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="2px">
-<path fill-rule="evenodd" fill="rgb(22, 22, 25)" d="M0.000,-0.000 L15.000,-0.000 L15.000,2.000 L0.000,2.000 L0.000,-0.000 Z" />
-</svg>
-<svg class="plus" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px">
-<path fill-rule="evenodd" fill="rgb(22, 22, 25)" d="M15.000,8.000 L9.000,8.000 L9.000,15.000 L7.000,15.000 L7.000,8.000 L0.000,8.000 L0.000,6.000 L7.000,6.000 L7.000,-0.000 L9.000,-0.000 L9.000,6.000 L15.000,6.000 L15.000,8.000 Z" />
-</svg>
-</a>
-</div>
-<div id="widgetCollapse22" class="mt-4 widget-content collapse show" aria-labelledby="widgetHeading22" data-parent="#widgetAccordion">
-<ul class="product-categories">
-<li class="custom-control custom-checkbox mb-2 pb-2">
-<input type="checkbox" class="custom-control-input" id="brandEnglish">
-<label class="custom-control-label" for="brandEnglish">English</label>
-</li>
-<li class="custom-control custom-checkbox mb-2 pb-2">
-<input type="checkbox" class="custom-control-input" id="brandGerman">
-<label class="custom-control-label" for="brandGerman">German</label>
-</li>
-<li class="custom-control custom-checkbox mb-2 pb-2">
-<input type="checkbox" class="custom-control-input" id="brandFrench">
-<label class="custom-control-label" for="brandFrench">French</label>
-</li>
-<li class="custom-control custom-checkbox mb-2 pb-2">
-<input type="checkbox" class="custom-control-input" id="brandSpanish">
-<label class="custom-control-label" for="brandSpanish">Spanish</label>
-</li>
-<li class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="brandTurkish">
-<label class="custom-control-label" for="brandTurkish">Turkish</label>
-</li>
-</ul>
-</div>
-</div>
+
 <div id="Format" class="widget p-4d875 border">
 <div id="widgetHeading23" class="widget-head">
 <a class="d-flex align-items-center justify-content-between text-dark" href="v1.html#" data-toggle="collapse" data-target="#widgetCollapse23" aria-expanded="true" aria-controls="widgetCollapse23">
@@ -1375,18 +1364,13 @@ Remember me
 </div>
 <div id="widgetCollapse23" class="mt-3 widget-content collapse show" aria-labelledby="widgetHeading23" data-parent="#widgetAccordion">
 <ul class="product-categories">
+{% for format in formats %}
 <li class="cat-item cat-item-9 cat-parent">
-<a href="v3.html">Audio CD</a>
-</li>
-<li class="cat-item cat-item-69 cat-parent">
-<a href="v3.html">Audio Book</a>
-</li>
-<li class="cat-item cat-item-65 cat-parent">
-<a href="v3.html">Hardcover</a>
-</li>
-<li class="cat-item cat-item-11 cat-parent"><a href="v3.html">Kindle Books</a>
-</li>
-<li class="cat-item cat-item-12"><a href="v3.html">Paperback</a></li>
+    <a href="v3.html">{{ format.format}}</a>
+    </li>
+{% endfor %}
+
+
 </ul>
 </div>
 </div>

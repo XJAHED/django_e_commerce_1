@@ -3,7 +3,7 @@ from banner.models import *
 from Books.models import *
 from .models import Subscriber
 from django.contrib import messages
-
+from django.core.paginator import Paginator
 
 # Create your views here.
 def home_page(request):
@@ -44,8 +44,17 @@ def shop_page(request):
     context['authors']=author
     category = Category.objects.all()
     context['categorys']=category
+    format = Format.objects.all()
+    context['formats']=format
+    
     book = Book.objects.all()
-    context['books']=book
+    # context['books']=book
+    
+    paginator = Paginator(book, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context['books']=page_obj
+    
     return render(request, 'html/shop/v1.html', context)
 
 def single_book(request,id):
