@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Banner, on_offer, sale_offer
+from .models import *
 # Register your models here.
 
 admin.site.register(Banner)

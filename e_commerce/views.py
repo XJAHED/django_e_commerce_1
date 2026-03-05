@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
+# from e_commerce import Auth
+
 # # Create your views here.
 
 # def home_page(request):
@@ -16,6 +18,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def admin_page(request):
-    users = User.objects.all()
-    return render(request, "html/dashboard/dashboard.html", {"users": users})
+    # users = Auth.User.objects.all()
+    # {"users": users}
+    return render(request, "html/dashboard/dashboard.html", )
 

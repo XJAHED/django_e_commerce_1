@@ -29,7 +29,8 @@ urlpatterns = [
     path('', include('IndexPage.urls')),
     path('dashboard/',admin_page, name='admin_page'),
     path('dashboard/', include(('Dashboard.urls', 'dashboard'), namespace='dashboard')),
-    path('book/', include('Books.urls'))
+    path('book/', include('Books.urls')),
+    path('authentication/', include('Auth.urls'))
 ]
 
 if settings.DEBUG:

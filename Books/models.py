@@ -11,6 +11,7 @@ def upload_image_path(instance, filename):
     extention = filename.split(".")[1]
     filename = f"{instance.name}-{instance.book_code}.{extention}"
     return os.path.join('books/', filename)
+
 def author_image_path(instance, filename):
     extention = filename.split(".")[-1]
     filename = f"{instance.name}-{random.randint(100000, 999999)}.{extention}"
