@@ -19,8 +19,7 @@ class user(AbstractUser):
         CUSTOMER = 'customer', 'Customer'
     
     profile = ResizedImageField(size=[300,200],quality=80,upload_to=admin_profile, null=True, blank=True)
-    full_name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=15)
     phone_number = models.CharField(max_length=50, blank= True, null = True)
     role = models.CharField(max_length=10,choices=RoleData.choices, default='customer')

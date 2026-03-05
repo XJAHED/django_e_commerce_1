@@ -50,24 +50,26 @@
                         <form method="POST">
                             {% csrf_token %}
                             <div class="intro-x mt-8">
-                                <input name="name" type="text" class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block" placeholder="Full Name">
-                                <input name="phone" type="number" class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block mt-4" placeholder="Phone Number">
-                                <input name="email" onchange="duplicate_email(this.value)" type="email" class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block mt-4" placeholder="Email">
+                                
+                                <input name="name" type="text" class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block" placeholder="Full Name" required>
+                                <input name="phone" type="number" class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block mt-4" placeholder="Phone Number" required>
+                                <input name="email" onchange="duplicate_email(this.value)" type="email" class=" text-lowercase intro-x login__input form-control py-3 px-4 border-gray-300 d-block mt-4" placeholder="Email" required>
                                 <span id="email_error" class="d-none" style="color: red;">Already exists</span>
 
-                                <input onchange="checkPassword()" id="password" name="password" type="password" class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block mt-4" placeholder="Password">
-                                <input onkeyup="checkPassword()" id="confirm_password" name="confirm_password" type="password" class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block mt-4" placeholder="Password Confirmation">
+                                <input onchange="checkPassword()" id="password" name="password" type="password" class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block mt-4" placeholder="Password" required>
+                                <input onkeyup="checkPassword()" id="confirm_password" name="confirm_password" type="password" class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block mt-4" placeholder="Password Confirmation" required>
                                 <span id="pass_check"></span>
                                
                             </div>
                             <div class="intro-x mt-5 mt-xl-8 text-center text-xl-start">
                                 <button type="submit" class="btn btn-primary py-3 px-4 w-full w-xl-32 me-xl-3 align-top">Register</button>
-                                <a href="{% url 'login' %}">
-                                    <button class="btn btn-outline-secondary py-3 px-4 w-full w-xl-32 mt-3 mt-xl-0 align-top">Sign in</button>
+                                
+                                <a href="{% url 'login' %}"
+                                    class="btn btn-outline-secondary py-3 px-4 w-full w-xl-32 mt-3 mt-xl-0 align-top">Sign in
                                 </a>
-                               
                             </div>
                         </form>
+                        
                         
                     </div>
                 </div>

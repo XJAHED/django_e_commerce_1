@@ -3,11 +3,12 @@ from django.shortcuts import render, redirect
 from Auth.models import *
 from .models import *
 from django.contrib import messages
+from django.contrib.auth import  authenticate, login as auth_login
 # Create your views here.
 
 def register(request):
     if request.method =="POST":
-        username = request.POST.get('name')
+        name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         password = request.POST.get('password')
@@ -19,11 +20,32 @@ def register(request):
         if user.objects.filter(email=email).exists():
             messages.error(request, "Email already exists")
             return redirect('register')
-        admin_user = user.objects.create_user(username=username, email=email, phone_number=phone, password=password)
+        username = email.split('@')[0]
+        admin_user = user.objects.create_user(username=username, email=email, phone_number=phone, password=password, name=name)
+        
+        messages.success(request, "Register successful")
         admin_user.save()
         return redirect('register')
     return render(request, 'html/dashboard/register.html')
 
 def login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        # email = email.lower()
+        password = request.POST.get("password")
+        user_obj = user.objects.filter(email=email)
+        if user_obj.exists():
+            username = user_obj.first().username
+            user_instance = authenticate(username=username, password=password)
+            # print(user)
+            if user_instance is not None:
+                auth_login(request, user_instance)
+                return redirect('dashboard:CustomAdmin')
+            else:
+                messages.error(request, "Invalid credentials")
+        else:
+             messages.error(request, "Invalid credentials")
+        return redirect('login')
+        
     return render(request, 'html/dashboard/login.html')
 
