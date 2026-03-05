@@ -84,7 +84,7 @@
                             <i data-feather="search" class="search__icon dark-text-gray-300"></i> 
                         </div>
                         <a class="notification d-sm-none" href="index.html"> <i data-feather="search" class="notification__icon dark-text-gray-300"></i> </a>
-                        <div class="search-result">
+                        <!-- <div class="search-result">
                             <div class="search-result__content">
                                 <div class="search-result__content__title">Pages</div>
                                 <div class="mb-5">
@@ -108,7 +108,7 @@
                                             <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle" src="dist/images/profile-14.jpg">
                                         </div>
                                         <div class="ms-3">{{ user.username }}</div>
-                                        <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">robertdeniro@left4code.com</div>
+                                        <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">{{user.email}}</div>
                                     </a>
                                     <a href="index.html" class="d-flex align-items-center mt-2">
                                         <div class="w-8 h-8 image-fit">
@@ -162,23 +162,28 @@
                                     <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">Sport &amp; Outdoor</div>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="intro-x dropdown w-8 h-8">
                         <div class="dropdown-toggle w-8 h-8 rounded-pill overflow-hidden shadow-lg image-fit zoom-in" role="button" aria-expanded="false" data-bs-toggle="dropdown">
-                            <img alt="Rubick Tailwind HTML Admin Template" src="dist/images/profile-2.jpg">
+                            <!-- <img alt="Rubick Tailwind HTML Admin Template" src="{{user.image.url}}"> -->
+                            {% if user.profile %}
+                                <img src="{{ user.profile.url }}" alt="profile">
+                            {% else %}
+                                <img src="{% static 'dashboard/profile.webp' %}" alt="avatar">
+                            {% endif %}
                         </div>
                         <div class="dropdown-menu w-56">
                             <ul class="dropdown-content bg-theme-26 dark-bg-dark-6 text-white">
                                 <li class="p-2">
                                     <div class="fw-medium text-white">{{ user.username }}</div>
-                                    <div class="fs-xs text-theme-28 mt-0.5 dark-text-gray-600">DevOps Engineer</div>
+                                    <div class="fs-xs text-theme-28 mt-0.5 dark-text-gray-600">{{user.email}}</div>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider border-theme-27 dark-border-dark-3">
                                 </li>
                                 <li>
-                                    <a href="index.html" class="dropdown-item text-white bg-theme-1-hover dark-bg-dark-3-hover"> <i data-feather="user" class="w-4 h-4 me-2"></i> Profile </a>
+                                    <a href="{% url 'profile' %}" class="dropdown-item text-white bg-theme-1-hover dark-bg-dark-3-hover"> <i data-feather="user" class="w-4 h-4 me-2"></i> Profile </a>
                                 </li>
                                 <li>
                                     <a href="index.html" class="dropdown-item text-white bg-theme-1-hover dark-bg-dark-3-hover"> <i data-feather="edit" class="w-4 h-4 me-2"></i> Add Account </a>
@@ -193,7 +198,7 @@
                                     <hr class="dropdown-divider border-theme-27 dark-border-dark-3">
                                 </li>
                                 <li>
-                                    <a href="index.html" class="dropdown-item text-white bg-theme-1-hover dark-bg-dark-3-hover"> <i data-feather="toggle-right" class="w-4 h-4 me-2"></i> Logout </a>
+                                    <a href="{% url 'user_logout' %}" class="dropdown-item text-white bg-theme-1-hover dark-bg-dark-3-hover"> <i data-feather="toggle-right" class="w-4 h-4 me-2"></i> Logout </a>
                                 </li>
                             </ul>
                         </div>

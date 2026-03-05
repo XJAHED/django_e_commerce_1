@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from Auth.models import *
 from .models import *
 from django.contrib import messages
-from django.contrib.auth import  authenticate, login as auth_login
+from django.contrib.auth import  authenticate, login as auth_login, logout
 # Create your views here.
 
 def register(request):
@@ -25,7 +25,7 @@ def register(request):
         
         messages.success(request, "Register successful")
         admin_user.save()
-        return redirect('register')
+        return redirect('login')
     return render(request, 'html/dashboard/register.html')
 
 def login(request):
@@ -49,3 +49,11 @@ def login(request):
         
     return render(request, 'html/dashboard/login.html')
 
+def user_logout(request):
+    logout(request)
+    return redirect('login')
+
+
+def profile(request):
+    # user_obj = user.objects.get(all)
+    return render(request, 'html/dashboard/profile.html')
