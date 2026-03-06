@@ -3,13 +3,14 @@ from django.contrib.auth.models import AbstractUser
 from django_resized import ResizedImageField
 import os
 import random
+from django_cleanup import cleanup
 # Create your models here.
 
 def admin_profile(instance, filename):
     extention = filename.split(".")[-1]
     filename = f"{instance.name}-{random.randint(100000, 999999)}.{extention}"
-    return os.path.join('Author/', filename)
-
+    return os.path.join('User/', filename)
+@cleanup.select
 class user(AbstractUser):
     first_name = None
     last_name = None

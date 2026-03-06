@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from banner.models import *
 from Books.models import *
 from IndexPage.models import *
+from Auth.models import *
 # Create your views here.
 @login_required(login_url='login')
 def CustomAdmin(request):
@@ -272,3 +273,32 @@ def delete_subscribers(request,id):
     sub.delete()
     messages.success(request, "Subscribers Delete Successfully")
     return redirect('dashboard:subscribers')
+
+def staff(request):
+    context={}
+    user_obj = user.objects.all()
+    context["users"] = user_obj
+    return render(request, 'html/dashboard/staff.html',context)
+
+
+@login_required
+def change_role(request, id):
+    if request.method == "POST":
+        user_obj = get_object_or_404(user, id=id)
+        new_role = request.POST.get('role')
+        if new_role in ['admin', 'customer']:
+            user_obj.role = new_role
+            user_obj.save()
+            messages.success(request, f"{user_obj.name}'s role updated to {new_role.upper()}")
+
+    return redirect('dashboard:staff')
+
+def delete_staff(request,id):
+    staff=get_object_or_404(user, id=id)
+    if user.role == 'customer':
+        staff.delete()
+        messages.success(request, "Delete Successfull")
+    else:
+        messages.error(request, "You can delete only staff")
+
+    return redirect('dashboard:staff')

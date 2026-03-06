@@ -1,0 +1,117 @@
+{% load static %}
+{% include 'html/components/dashboard_nav.html' %}
+<div class="grid columns-12 gap-6">
+    <div class="g-col-12 mt-6">
+        {% if user.role == 'admin' %}
+        <div class=" my-5 p-5 bg-light rounded">
+            <div class="row align-items-center">
+              
+                <div class="col-md-2">
+                    <h1 class="lead mb-0" style="font-size: 24px; color:#1c3faa; font-weight: 400;">TOTAL STAFF : {{users|length}} </h1>
+
+                </div>
+
+            </div>
+        </div>
+
+       
+        <div class="intro-y overflow-auto overflow-lg-visible mt-10 mt-sm-0">
+            <table class="table table-report mt-sm-2">
+                <thead>
+                    <tr>
+                      
+                        <th></th>
+                        <th class="text-nowrap text-start">IMAGES</th>
+                        <th class="text-nowrap text-center">Name</th>
+                        <th class="text-center text-nowrap">Phone</th>
+                        <th class="text-center text-nowrap">Gmail</th>
+                        <th class="text-center text-nowrap">ROLE</th>
+                        <th class="text-center text-nowrap">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 
+                    {% for user in users %}
+                    <tr class="intro-x">
+                      <td>{{forloop.counter}}</td>
+                        <td class="w-40 ">
+                            {% if user.profile %}
+                            <div class="d-flex">
+                                <div class="w-10 h-10 image-fit zoom-in">
+                                    <img alt="Rubick Bootstrap HTML Admin Template" class="tooltip rounded-circle" src="{{user.profile.url}}" title="">
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="d-flex">
+                                <div class="w-10 h-10 image-fit zoom-in">
+                                    <img alt="Rubick Bootstrap HTML Admin Template" class="tooltip rounded-circle" src="{% static 'dashboard/profile.webp' %}" title="">
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                        </td>
+                        <td class="text-center">
+                            <a href="index.html" class="fw-medium text-nowrap">{{user.name}}</a> 
+                        </td>
+                        <td class="text-center">
+                            <a href="index.html" class="fw-medium text-nowrap">{{user.phone_number}}</a> 
+                        </td>
+                        <td class="text-center">
+                            <a href="index.html" class="fw-medium text-nowrap">{{user.email}}</a> 
+                        </td>
+                    
+
+
+                        <!-- {% if user.role == 'admin' %}
+                        <td class="w-40">
+                            <div class="d-flex align-items-center justify-content-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 me-2"></i> ADMIN </div>
+                        </td>
+                        {% else %}
+                        <td class="w-40">
+                            <div class="d-flex align-items-center justify-content-center text-theme-6"> <i data-feather="check-square" class="w-4 h-4 me-2"></i> STAFF </div>
+                        </td>
+                        {% endif %} -->
+                        <td class="w-40">
+                        <form method="POST" action="{% url 'dashboard:change_role' user.id %}">
+                            {% csrf_token %}
+                            <select  name="role" onchange="this.form.submit()" class="form-select">
+                                <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>ADMIN</option>
+                                <option value="customer" {% if user.role == 'customer' %}selected{% endif %}>STAFF</option>
+                            </select>
+                        </form>
+                        </td>
+                       
+                   
+                        <td class="table-report__action w-56">
+                            <div class="d-flex justify-content-center align-items-center">
+                              
+                                <a class="delete d-flex align-items-center text-theme-6" href="{% url 'dashboard:delete_staff' user.id %}"> <i data-feather="trash-2" class="w-4 h-4 me-1"></i> Delete </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                   
+                  
+                    
+
+
+         
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="mt-20">
+            <h1 class="lead mb-0 text-center " style="letter-spacing: 3px; font-size: 35px; color:#b91e1e; font-weight: 400;">ADMIN VIEW ONLY </h1>
+
+        </div>
+        {% endif %}
+        
+        
+    </div>
+    <!-- END: Weekly Top Products -->
+</div>
+</div>
+
+</div>
+
+{% include 'html/components/dashboard_footer.html' %}

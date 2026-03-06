@@ -82,14 +82,14 @@
 <div class="main-content">
     <div class="header">
         <!-- <h1>Welcome, {{ Auth.User.username }}!</h1> -->
-        <p>Here's what's happening today.</p>
+        <p>Here's {{user.name}}, what's happening today.</p>
     </div>
 
     <!-- Cards -->
     <div class="cards">
         <div class="card">
             <h3>Total Users</h3>
-            <p>{{ Auth.users|length }}</p>
+            <p>{{users|length}}</p>
         </div>
         <div class="card">
             <h3>Orders Today</h3>

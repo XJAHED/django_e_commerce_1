@@ -28,4 +28,7 @@ urlpatterns = [
     path('author/author_add/', author_add, name="author_add"),
     path('subscribers/',subscribers, name="subscribers"),
     path("delete_subscribers/<int:id>", delete_subscribers, name="delete_subscribers"),
+    path('staff/', staff, name="staff"),
+     path('change-role/<int:id>/', change_role, name='change_role'),
+     path('delete_staff/<int:id>',delete_staff,name="delete_staff"),
 ]
