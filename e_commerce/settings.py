@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'Books',
     "IndexPage",
     'Auth',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

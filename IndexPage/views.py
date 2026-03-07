@@ -4,8 +4,22 @@ from Books.models import *
 from .models import Subscriber
 from django.contrib import messages
 from django.core.paginator import Paginator
-
+from .filters import BookFilter
+# from Books.models import Book
+# from .models import Book
 # Create your views here.
+
+def shop_page_filter(request):
+
+    book_filter = BookFilter(request.GET, queryset=Book.objects.all())
+    context = {
+        'filter': book_filter
+    }
+    return render(request, 'html/shop/v1.html', context)
+
+
+
+
 def home_page(request):
     context ={}
     
@@ -50,7 +64,7 @@ def shop_page(request):
     book = Book.objects.all()
     # context['books']=book
     
-    paginator = Paginator(book, 4)
+    paginator = Paginator(book, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context['books']=page_obj

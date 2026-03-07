@@ -251,6 +251,22 @@ Others
 </ul>
 </div>
 <ul class="nav align-self-center ml-auto ml-xl-0">
+    <!-- <form method="GET" action="{% url 'shop_page_filter' %}">
+        <input type="text" name="name"  placeholder="Search book">
+        <button type="submit">Search</button>
+      </form> -->
+      
+    <li><div class="site-search ml-xl-0 ml-md-auto w-r-100 my-2 my-xl-0">
+        <form method="GET" action="{% url 'shop_page_filter' %}" class="form-inline">
+        <div class="input-group">
+        <div class="input-group-prepend">
+        <i class="glph-icon flaticon-loupe input-group-text py-2d75 bg-white-100 border-white-100"></i>
+        </div>
+        <input name="name" class="form-control bg-white-100 min-width-380 py-2d75 height-4 border-white-100" type="search" placeholder="Search for Books by Keyword ..." aria-label="Search">
+        </div>
+        <button class="btn btn-outline-success my-2 my-sm-0 sr-only" type="submit">Search</button>
+        </form>
+        </div></li>
 <li class="d-none d-md-block nav-item"><a href="home-v6.html#" class="js-hs-unfold-invoker nav-link text-dark"><i class="glph-icon flaticon-heart font-size-4"></i></a></li>
 <li class="nav-item">
 
@@ -263,6 +279,7 @@ Others
 </a>
 
 </li>
+
 <li class="d-none d-md-block nav-item">
 
 <a id="sidebarNavToggler1" href="javascript:;" role="button" class="js-hs-unfold-invoker nav-link pr-0 text-dark position-relative" aria-controls="sidebarContent1" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-hide-on-scroll="false" data-unfold-target="#sidebarContent1" data-unfold-type="css-animation" data-unfold-overlay="{

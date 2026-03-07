@@ -273,7 +273,7 @@ def delete_subscribers(request,id):
     sub.delete()
     messages.success(request, "Subscribers Delete Successfully")
     return redirect('dashboard:subscribers')
-
+@login_required(login_url='login')
 def staff(request):
     context={}
     user_obj = user.objects.all()
@@ -281,7 +281,7 @@ def staff(request):
     return render(request, 'html/dashboard/staff.html',context)
 
 
-@login_required
+@login_required(login_url='login')
 def change_role(request, id):
     if request.method == "POST":
         user_obj = get_object_or_404(user, id=id)
@@ -292,7 +292,7 @@ def change_role(request, id):
             messages.success(request, f"{user_obj.name}'s role updated to {new_role.upper()}")
 
     return redirect('dashboard:staff')
-
+@login_required(login_url='login')
 def delete_staff(request,id):
     staff=get_object_or_404(user, id=id)
     if user.role == 'customer':
