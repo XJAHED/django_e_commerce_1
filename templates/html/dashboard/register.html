@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 
 <html lang="en" class="light">
@@ -67,9 +68,15 @@
                                 <a href="{% url 'login' %}"
                                     class="btn btn-outline-secondary py-3 px-4 w-full w-xl-32 mt-3 mt-xl-0 align-top">Sign in
                                 </a>
+                               
                             </div>
                         </form>
-                        
+                        <!-- <a href="{% provider_login_url 'google' %}">Login with Google</a> -->
+                       
+
+                        <a href="{% provider_login_url 'google' %}" class=" btn-google">
+                            Sign In via Google
+                        </a>
                         
                     </div>
                 </div>
