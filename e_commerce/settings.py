@@ -114,13 +114,6 @@ DATABASES = {
     }
 }
 
-# settings.py
-
-ALLOWED_HOSTS = [
-    '127.0.0.1',                  # local dev
-    'localhost',                   # local dev
-    'django-e-commerce-1-2.onrender.com',  # your Render domain
-]
 
 
 # Password validation
