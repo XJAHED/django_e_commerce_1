@@ -66,9 +66,11 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-LOGIN_REDIRECT_URL = '/dashboard/'   # user login হলে dashboard এ যাবে
-LOGOUT_REDIRECT_URL = '/'            # logout হলে homepage এ যাবে
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/'
+
 SOCIALACCOUNT_AUTO_SIGNUP = True
+
 
 
 MIDDLEWARE = [

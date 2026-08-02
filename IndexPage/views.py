@@ -12,13 +12,19 @@ from .filters import BookFilter
 def shop_page_filter(request):
 
     book_filter = BookFilter(request.GET, queryset=Book.objects.all())
+    
     context = {
         'filter': book_filter
     }
     return render(request, 'html/shop/v1.html', context)
 
-
-
+# def shop_page_category_filter(request):
+#     Category_Filter = CategoryFilter(request.GET, queryset=Category.objects.all())
+#     context = {
+#         'filter': Category_Filter,
+#         'categorys': Category_Filter.qs,
+#     }
+#     return render(request, 'html/shop/v1.html', context)
 
 def home_page(request):
     context ={}
@@ -53,22 +59,39 @@ def Subscriber_user(request):
     return redirect('home_page')
 
 def shop_page(request):
-    context={}
-    author = Author.objects.all()
-    context['authors']=author
-    category = Category.objects.all()
-    context['categorys']=category
-    format = Format.objects.all()
-    context['formats']=format
+    context = {}
+
+    authors = Author.objects.all()
+    authors = Author.objects.filter(book__isnull=False).distinct()
+    categorys = Category.objects.all()
+    categorys= Category.objects.filter(book__isnull=False).distinct()
+    formats = Format.objects.all()
+    formats= Format.objects.filter(book__isnull=False).distinct()
+
+    books = Book.objects.all()
+
+    category_id = request.GET.get('category')
+    if category_id:
+        books = books.filter(category_id=category_id)
     
-    book = Book.objects.all()
-    # context['books']=book
+    author_id = request.GET.get('author')
+    if author_id:
+        books = books.filter(author_id=author_id)
     
-    paginator = Paginator(book, 8)
+    format_id= request.GET.get('format')
+    if format_id:
+        books = books.filter(format_id=format_id)
+
+
+    paginator = Paginator(books, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context['books']=page_obj
-    
+
+    context['authors'] = authors
+    context['categorys'] = categorys
+    context['formats'] = formats
+    context['books'] = page_obj
+
     return render(request, 'html/shop/v1.html', context)
 
 def single_book(request,id):

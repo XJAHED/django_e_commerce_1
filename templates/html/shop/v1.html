@@ -142,7 +142,7 @@
         </div>
         </li>
     {% endfor %}
-{% endif %}    
+{% endif %}
 
 
 </ul>
@@ -391,7 +391,7 @@
 <ul class="product-categories">
 {% for category in categorys %}
 <li class="cat-item cat-item-9 cat-parent">
-<a href="v3.html">{{category.name}}</a>
+<a href="?category={{ category.id }}">{{category.name}}</a>
 </li>
 {% endfor %}
 </ul>
@@ -422,7 +422,7 @@
 <ul class="product-categories">
     {% for author in authors %}
     <li class="cat-item cat-item-9 cat-parent">
-        <a href="../others/authors-single.html">{{author.name}}</a>
+        <a href="?author={{author.id}}">{{author.name}}</a>
         </li>
     {% endfor %}
 
@@ -447,7 +447,7 @@
 <ul class="product-categories">
 {% for format in formats %}
 <li class="cat-item cat-item-9 cat-parent">
-    <a href="v3.html">{{ format.format}}</a>
+    <a href="?format={{format.id}}">{{ format.format}}</a>
     </li>
 {% endfor %}
 
