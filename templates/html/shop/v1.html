@@ -26,18 +26,7 @@
 <option value="price-desc">Sort by price: high to low</option>
 </select>
 
-</form>
-<form class="number-of-items ml-md-4 mb-4 m-md-0 d-none d-xl-block" method="get">
 
-<select class="js-select selectpicker dropdown-select orderby" name="orderby" data-style="border-bottom shadow-none outline-none py-2" data-width="fit">
-<option value="show10">Show 10</option>
-<option value="show15">Show 15</option>
-<option value="show20" selected="selected">Show 20</option>
-<option value="show25">Show 25</option>
-<option value="show30">Show 30</option>
-</select>
-
-</form>
 <ul class="nav nav-tab ml-lg-4 justify-content-center justify-content-md-start ml-md-auto" id="pills-tab" role="tablist">
 <li class="nav-item border">
 <a class="nav-link p-0 height-38 width-38 justify-content-center d-flex align-items-center active" id="pills-one-example1-tab" data-toggle="pill" href="v1.html#pills-one-example1" role="tab" aria-controls="pills-one-example1" aria-selected="true">
@@ -141,6 +130,8 @@
         </div>
         </div>
         </li>
+        {% empty %}
+        <p>No book found</p>
     {% endfor %}
 {% endif %}
 
@@ -344,6 +335,7 @@
 <li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="?page={{ books.previous_page_number }}">Previous</a></li>
 {% endif %}
 <!-- Page Numbers -->
+{% if books.paginator.num_pages > 1 %}
 {% for num in books.paginator.page_range %}
     
     {% if num >= books.number|add:'-1' and num <= books.number|add:'1' %}
@@ -361,6 +353,7 @@
     {% endif %}
 
 {% endfor %}
+{% endif %}
 
 
 {% if books.has_next %}

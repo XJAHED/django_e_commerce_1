@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "IndexPage",
     'Auth',
     'django_filters',
+    'blog',
     
     # allauth
     'allauth',
@@ -98,6 +99,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'IndexPage.context_processors.Categories',
+                'IndexPage.context_processors.Authors',
+                'IndexPage.context_processors.Formats',
             ],
         },
     },

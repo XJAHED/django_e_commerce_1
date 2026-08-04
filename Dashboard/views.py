@@ -286,19 +286,21 @@ def change_role(request, id):
     if request.method == "POST":
         user_obj = get_object_or_404(user, id=id)
         new_role = request.POST.get('role')
-        if new_role in ['admin', 'customer']:
+        if new_role in ['admin', 'staff']:
             user_obj.role = new_role
             user_obj.save()
             messages.success(request, f"{user_obj.name}'s role updated to {new_role.upper()}")
-
     return redirect('dashboard:staff')
 @login_required(login_url='login')
 def delete_staff(request,id):
     staff=get_object_or_404(user, id=id)
-    if user.role == 'customer':
+    if staff.role == 'staff':
         staff.delete()
         messages.success(request, "Delete Successfull")
     else:
         messages.error(request, "You can delete only staff")
 
     return redirect('dashboard:staff')
+
+
+

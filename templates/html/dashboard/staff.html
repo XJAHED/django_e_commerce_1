@@ -76,7 +76,7 @@
                             {% csrf_token %}
                             <select  name="role" onchange="this.form.submit()" class="form-select">
                                 <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>ADMIN</option>
-                                <option value="customer" {% if user.role == 'customer' %}selected{% endif %}>STAFF</option>
+                                <option value="staff" {% if user.role == 'staff' %}selected{% endif %}>STAFF</option>
                             </select>
                         </form>
                         </td>
@@ -110,8 +110,6 @@
     </div>
     <!-- END: Weekly Top Products -->
 </div>
-</div>
 
-</div>
 
 {% include 'html/components/dashboard_footer.html' %}

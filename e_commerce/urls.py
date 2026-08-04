@@ -32,6 +32,7 @@ urlpatterns = [
     path('book/', include('Books.urls')),
     path('authentication/', include('Auth.urls')),
     path('accounts/', include('allauth.urls')),
+    path('', include('blog.urls'))
 ]
 
 if settings.DEBUG:

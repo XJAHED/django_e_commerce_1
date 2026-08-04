@@ -18,13 +18,8 @@ def shop_page_filter(request):
     }
     return render(request, 'html/shop/v1.html', context)
 
-# def shop_page_category_filter(request):
-#     Category_Filter = CategoryFilter(request.GET, queryset=Category.objects.all())
-#     context = {
-#         'filter': Category_Filter,
-#         'categorys': Category_Filter.qs,
-#     }
-#     return render(request, 'html/shop/v1.html', context)
+
+
 
 def home_page(request):
     context ={}
@@ -104,3 +99,5 @@ def single_book(request,id):
     context['related_books']=related_books
     
     return render(request, "html/shop/single-product-v1.html", context)
+
+
