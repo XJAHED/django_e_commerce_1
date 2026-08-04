@@ -17,7 +17,65 @@
 <!-- END: Head --
     <body class="main">
         <!-- BEGIN: Mobile Menu -->
-        
+        <!-- BEGIN: Mobile Menu -->
+        <div class="mobile-menu d-md-none">
+            <div class="mobile-menu-bar">
+                <a href="side-menu-light-dropdown.html" class="d-flex me-auto">
+                    <img alt="Rubick Bootstrap HTML Admin Template" class="w-6" src="https://imgs.search.brave.com/GgQdHrcJAUdj7hQKYt7ZLh6wV_9gkwAsmCLABq7R744/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9iYWNr/ZW5kLXRoaW4tbGlu/ZS12ZWN0b3ItaWNv/bi1zZXQtd2hpdGUt/YmFja2dyb3VuZC1l/cHMtMzM4MDQyMDc4/LmpwZw">
+                </a>
+                <a href="javascript:;" id="mobile-menu-toggler" class="mobile-menu-bar__toggler"> <i data-feather="bar-chart-2" class="w-8 h-8 text-white"></i> </a>
+            </div>
+            <ul class="mobile-menu-wrapper border-top border-theme-29 dark-border-dark-3 py-5">
+
+                
+
+                <li>
+                    <a href="{% url 'dashboard:banner_section' %}" class="menu">
+                        <div class="menu__icon"> <i data-feather="tool"></i> </div>
+                        <div class="menu__title"> BANNER </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'dashboard:all_books' %}" class="menu">
+                        <div class="menu__icon"> <i data-feather="book"></i> </div>
+                        <div class="menu__title"> BOOKS</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'dashboard:book_category_page' %}" class="menu">
+                        <div class="menu__icon"> <i data-feather="briefcase"></i> </div>
+                        <div class="menu__title"> BOOKS CATEGORY</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'dashboard:author' %}" class="menu">
+                        <div class="menu__icon"> <i data-feather="award"></i> </div>
+                        <div class="menu__title"> AUTHOR </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'dashboard_blog' %}" class="menu">
+                        <div class="menu__icon"> <i data-feather="award"></i> </div>
+                        <div class="menu__title"> Blog </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'dashboard:subscribers' %}" class="menu">
+                        <div class="menu__icon"> <i data-feather="mail"></i> </div>
+                        <div class="menu__title">ALL SUBSCRIBERS </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'dashboard:staff' %}" class="menu">
+                        <div class="menu__icon"> <i data-feather="user"></i> </div>
+                        <div class="menu__title"> STAFF </div>
+                    </a>
+
+                </li>
+                
+            </ul>
+        </div>
+        <!-- END: Mobile Menu -->
         <!-- END: Mobile Menu -->
         <div class="d-flex">
             <!-- BEGIN: Side Menu -->
@@ -67,13 +125,11 @@
                         </a>
                     </li>
                     <li>
-                        
                         <a href="{% url 'dashboard:staff' %}" class="side-menu">
                             <div class="side-menu__icon"> <i data-feather="user"></i> </div>
                             <div class="side-menu__title"> STAFF </div>
                         </a>
-                        
-                        
+
                     </li>
                    
                 </ul>

@@ -3,11 +3,16 @@ from .models import *
 from django.contrib import messages
 # Create your views here.
 
-
+# Frontend
 def blog(request):
-    return render(request, 'html/blog/blog-v1.html')
+    context = {}
+    blog = Blog.objects.all()
+    context['blogs'] = blog
+    return render(request, 'html/blog/blog-v1.html', context)
 
 
+
+# Dashboard
 def dashboard_blog(request):
     context ={}
     blog = Blog.objects.all()
